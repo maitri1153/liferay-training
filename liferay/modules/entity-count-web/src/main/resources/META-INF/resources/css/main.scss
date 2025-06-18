@@ -1,0 +1,33 @@
+.entityCounttile{
+	height: 100px;
+	width: 255px;
+	background-color: #F0F1F1;
+	border-radius: 8px;
+}
+
+.entityCountImg{
+	height:30px ;
+	width: 45px;
+	display:block;
+	padding-left :20px;
+	padding-top: 10px;
+}
+
+.entityCounts{
+	font-weight: 700;
+	font-size: 30px;
+	float: right;
+	margin-right: 25px;
+	line-height: normal;
+}
+
+.entityCountText{
+	font-family: Poppins;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 100%;
+	padding-left: 20px;
+	padding-top: 10px;
+	margin: 0px;
+	color: #6C6C6C;
+}
