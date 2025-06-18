@@ -23,17 +23,17 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 
 @Component(
-		property = { "com.liferay.portlet.display-category=category.sample",
-		"com.liferay.portlet.header-portlet-css=/css/main.css", 
-		"com.liferay.portlet.instanceable=true",
-		"javax.portlet.display-name=EntityCountWeb", 
-		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/view.jsp",
-		"javax.portlet.init-param.config-template=/configuration.jsp",
-		"javax.portlet.name=" + EntityCountWebPortletKeys.ENTITYCOUNTWEB,
-		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.security-role-ref=power-user,user" 
-		}, service = Portlet.class
+    property = {"com.liferay.portlet.display-category=category.sample",
+    	"com.liferay.portlet.header-portlet-css=/css/main.css", 
+    	"com.liferay.portlet.instanceable=true",
+    	"javax.portlet.display-name=EntityCountWeb", 
+    	"javax.portlet.init-param.template-path=/",
+    	"javax.portlet.init-param.view-template=/view.jsp",
+    	"javax.portlet.init-param.config-template=/configuration.jsp",
+    	"javax.portlet.name=" + EntityCountWebPortletKeys.ENTITYCOUNTWEB,
+    	"javax.portlet.resource-bundle=content.Language",
+    	"javax.portlet.security-role-ref=power-user,user" 
+    }, service = Portlet.class
 )
 
 public class EntityCountWebPortlet extends MVCPortlet {
