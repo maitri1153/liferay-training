@@ -12,6 +12,7 @@ import com.liferay.adaptive.media.exception.AMRuntimeException.IOException;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
+import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Role;
@@ -44,7 +45,7 @@ public class EntityCountWebPortlet extends MVCPortlet {
 	UserLocalService userLocalService;
 
 	@Reference
-	ImageLocalService imageLocalService;
+	DLFileEntryLocalService dlfileentryLocalService;
 
 	@Reference
 	RoleLocalService roleLocalService;
@@ -64,7 +65,7 @@ public class EntityCountWebPortlet extends MVCPortlet {
 					EntityCountWebPortletKeys.IMAGE);
 
 			if (category.equalsIgnoreCase(EntityCountWebPortletKeys.IMAGE)) {
-				int imageCount = imageLocalService.getImagesCount();
+				int imageCount = dlfileentryLocalService.getDLFileEntriesCount();
 				renderRequest.setAttribute(EntityCountWebPortletKeys.COUNT, imageCount);
 			}
 
