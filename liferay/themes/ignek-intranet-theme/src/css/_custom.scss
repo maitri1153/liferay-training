@@ -1,10 +1,98 @@
-/* These inject tags are used for dynamically creating imports for themelet styles, you can place them where ever you like in this file. */
-
-/* inject:imports */
-
 @import 'liferay-font-awesome/scss/font-awesome';
 @import 'liferay-font-awesome/scss/glyphicons';
 
-/* endinject */
+.portlet-header{
+	display: none;
+}
 
-/* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+.siteNameDiv{
+	border-left: 4px #00979E solid;
+}
+
+.siteName{
+	font-family: Poppins;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 100%;
+	letter-spacing: 0%;
+	margin-top: 10px;
+}
+
+.sideBar{
+	width:270px;
+	justify-content: center;	
+	justify-items: center;
+	position: fixed;
+	margin-top: -50px;
+	background-color: #F0F1F1;
+	height: 100%;
+}
+
+.contentDiv{
+	margin-left: 270px;
+	
+}
+
+.profilePicture{
+	height: 135px;
+}
+
+.userName{
+	font-family: Poppins;
+	font-weight: 700;
+	font-size: 17px;
+	line-height: 100%;
+}
+
+.roles{
+	font-family: Poppins;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 100%;
+	color: #00979E;
+}
+
+#navigation{
+	height: 400px;
+	width: 193px;
+	margin-top: 50px;
+}
+.pageList{
+	height: 35px;
+	margin-bottom: 20px;
+	padding-left: 30px;
+	align-content: center;
+}
+.pageName{
+	color:black;
+	font-size: 14px;
+	font-weight: 500;	
+}
+.selected{
+	border-radius: 4px;
+	background-color: #00979E;
+	padding-left:30px ;
+	a > span{
+		color:white;
+	}
+}
+
+.logoutButton{
+	font-family: Poppins;
+	font-weight: 500;
+	font-size: 15px;
+	position: absolute;
+	bottom: 100px;
+	line-height: 100%;
+	border-style: none;
+	justify-self: anchor-center;
+}
+
+.roleName{
+	justify-items: center;
+}
+
+.breadcrumb{
+	background-color: white;
+	padding-left: 0px;
+}
