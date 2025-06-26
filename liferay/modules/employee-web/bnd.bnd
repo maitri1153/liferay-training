@@ -1,0 +1,7 @@
+Bundle-Name: employee-web
+Bundle-SymbolicName: com.employee
+Bundle-Version: 1.0.0
+Export-Package: com.employee.constants
+Provide-Capability:\
+	liferay.language.resources;\
+		resource.bundle.base.name="content.Language"
