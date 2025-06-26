@@ -10,7 +10,7 @@
 }
 
 .siteName{
-	font-family: Poppins;
+	font-family: sans-serif;
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 100%;
@@ -23,7 +23,6 @@
 	justify-content: center;	
 	justify-items: center;
 	position: fixed;
-	margin-top: -50px;
 	background-color: #F0F1F1;
 	height: 100%;
 }
@@ -38,14 +37,14 @@
 }
 
 .userName{
-	font-family: Poppins;
+	font-family: sans-serif;
 	font-weight: 700;
 	font-size: 17px;
 	line-height: 100%;
 }
 
 .roles{
-	font-family: Poppins;
+	font-family:sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 100%;
@@ -53,7 +52,7 @@
 }
 
 #navigation{
-	height: 400px;
+	height: 370px;
 	width: 193px;
 	margin-top: 50px;
 }
@@ -78,11 +77,11 @@
 }
 
 .logoutButton{
-	font-family: Poppins;
+	font-family: sans-serif;
 	font-weight: 500;
 	font-size: 15px;
 	position: absolute;
-	bottom: 100px;
+	bottom: 70px;
 	line-height: 100%;
 	border-style: none;
 	justify-self: anchor-center;
@@ -94,5 +93,18 @@
 
 .breadcrumb{
 	background-color: white;
-	padding-left: 0px;
+	padding-left: 10px;
+}
+
+.topNavigation{
+	z-index: 1000;
+	width: -webkit-fill-available;
+}
+
+.content{
+	margin-top: 55px;
+}
+
+.layout-logo{
+	padding-right: 10px;
 }

@@ -1,3 +1,5 @@
+<#include "${full_templates_path}/init_custom.ftl" />
+
 <nav aria-label="<@liferay.language key="site-pages" />" class="${nav_css_class}" id="navigation" role="navigation">
 <ul role="menubar" class="p-0 list-unstyled">
 		<#list nav_items as nav_item>
@@ -15,7 +17,8 @@
 			</#if>
 
 			<li id="layout_${nav_item.getLayoutId()}"  class="w-100 ${nav_item_css_class}  pageList" role="presentation">
-				<a ${nav_item_attr_has_popup} href="${nav_item.getURL()}" ${nav_item.getTarget()} role="menuitem"><span class="pageName">
+				<a ${nav_item_attr_has_popup} href="${nav_item.getURL()}" ${nav_item.getTarget()} role="menuitem">
+				<span class="pageName">
 					<@liferay_theme["layout-icon"] layout=nav_item_layout/> ${nav_item.getName()}</span></a>
 
 				<#if nav_item.hasChildren()>
@@ -40,7 +43,7 @@
 		</#list>
 	</ul>
 	<button class="logoutButton">
-		<a class="text-dark pr-2" href="${sign_out_url}">${sign_out_text}
+		<a class="text-dark pr-2" href="${sign_out_url}">${logout_text}
 		<img src="${images_folder}/sign-out.png"/></a>
 	</button>
 </nav>

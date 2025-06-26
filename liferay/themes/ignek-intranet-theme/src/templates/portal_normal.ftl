@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <#include init />
+
 <html class="${root_css_class}" dir="<@liferay.language key="lang.dir" />" lang="${w3c_language_id}">
 
 <head>
@@ -16,18 +17,15 @@
 
 <@liferay_util["include"] page=body_top_include />
 
-
-<div class="d-flex flex-column min-vh-100">
 <@liferay.control_menu />
 
 <div class="d-flex flex-column flex-fill" id="wrapper">
 	<header id="banner" role="banner" class="align-items-center w-100">
 		<div id="heading">
 			<div aria-level="1" class="site-title" role="heading">
-				<#include "${full_templates_path}/top_navigation.ftl" />
 			</div>
 		</div>
-
+		
 		<#if !is_signed_in>
 			<a data-redirect="${is_login_redirect_required?string}" href="${sign_in_url}" id="sign-in" rel="nofollow">${sign_in_text}</a>
 		</#if>			
@@ -38,14 +36,14 @@
 			<div class="sideBar">
 				<#assign user = themeDisplay.getUser()>
 				<#assign portraitURL = user.getPortraitURL(themeDisplay)>
-				<#assign roles = user.getRoles()>
+				<#assign roles = user.getSiteRoles()>
 				
 					<div class="siteNameDiv mt-2">
 						<p class="siteName pl-2">${site_name}</p>
 					</div>
     				<img src="${portraitURL}" alt="User Profile Picture" class="rounded-circle mt-3 profilePicture">
     				
-    				<p class="userName m-0 mt-2" role="presentation">${user_name}</p>
+    				<p class="userName m-0 mt-3" role="presentation">${user_name}</p>
     				
 					<#if roles?has_content>
 					<ul class="p-0 pt-2 list-unstyled roleName">
@@ -65,7 +63,11 @@
 			</div>
 			
 			<div class="w-100 contentDiv">
-				<h2 class="hide-accessible sr-only" role="heading" aria-level="1">${htmlUtil.escape(the_title)}</h2>
+				<div class="position-fixed bg-white topNavigation">
+					<#include "${full_templates_path}/top_navigation.ftl" />
+				</div>
+				<div class="content">
+					<h2 class="hide-accessible sr-only" role="heading" aria-level="1">${htmlUtil.escape(the_title)}</h2>
 		
 				<#if selectable>
 					<@liferay_util["include"] page=content_include />
@@ -78,6 +80,7 @@
 					<@liferay_util["include"] page=content_include />
 					</@>
 				</#if>
+				</div>
 			</div>
 	    
 		</section>
