@@ -1,0 +1,1 @@
+create unique index IX_EEBC1B05 on IgnekIntranet_EmployeeDetail (uuid_[$COLUMN_LENGTH:75$], groupId);
