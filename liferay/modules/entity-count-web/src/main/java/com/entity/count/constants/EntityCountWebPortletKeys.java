@@ -10,15 +10,13 @@ public class EntityCountWebPortletKeys {
 	
 	public static final String COUNT = "count";
 	
-	public static final String EMPLOYEE = "Employee";
+	public static final String EMPLOYEE = "emp";
 	
 	public static final String ENTITYCOUNTWEB = "com_entity_count_EntityCountWebPortlet";
 	
 	public static final String IMAGE = "Image";
 	
 	public static final String IMG_PATH = "imgPath";
-	
-	public static final String ROLE_EMPLOYEE = "emp";
 	
 	public static final String TECHNOLOGY = "technology";
 	

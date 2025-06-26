@@ -13,15 +13,21 @@ import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
+import com.liferay.journal.model.JournalArticle;
+import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.service.ImageLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
+import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.roles.admin.search.RoleSearch;
 
 @Component(
     property = {"com.liferay.portlet.display-category=category.sample",
@@ -42,6 +48,9 @@ public class EntityCountWebPortlet extends MVCPortlet {
 	private static Log log = LogFactoryUtil.getLog(EntityCountWebPortlet.class);
 
 	@Reference
+	UserGroupRoleLocalService usergrouproleLocalService;
+	
+	@Reference
 	UserLocalService userLocalService;
 
 	@Reference
@@ -55,7 +64,7 @@ public class EntityCountWebPortlet extends MVCPortlet {
 
 	@Reference
 	AssetVocabularyLocalService vocabularyLocalService;
-
+	
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException, java.io.IOException {
@@ -63,6 +72,9 @@ public class EntityCountWebPortlet extends MVCPortlet {
 			javax.portlet.PortletPreferences portletPreferences = renderRequest.getPreferences();
 			String category = portletPreferences.getValue(EntityCountWebPortletKeys.CATEGORY,
 					EntityCountWebPortletKeys.IMAGE);
+			ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+			long groupId = themeDisplay.getScopeGroupId();
+			long companyID = themeDisplay.getCompanyId();
 
 			if (category.equalsIgnoreCase(EntityCountWebPortletKeys.IMAGE)) {
 				int imageCount = dlfileentryLocalService.getDLFileEntriesCount();
@@ -75,8 +87,6 @@ public class EntityCountWebPortlet extends MVCPortlet {
 			}
 
 			if (category.equalsIgnoreCase(EntityCountWebPortletKeys.TECHNOLOGY)) {
-				ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
-				long groupId = themeDisplay.getScopeGroupId();
 				AssetVocabulary vocabularyname = vocabularyLocalService.getGroupVocabulary(groupId,
 						EntityCountWebPortletKeys.TECHNOLOGY);
 				long vocabularyid = vocabularyname.getVocabularyId();
@@ -85,11 +95,9 @@ public class EntityCountWebPortlet extends MVCPortlet {
 			}
 
 			if (category.equalsIgnoreCase(EntityCountWebPortletKeys.EMPLOYEE)) {
-				Long companyId = (Long) renderRequest.getAttribute(EntityCountWebPortletKeys.COMPANY_ID);
-				List<Role> rolenames = roleLocalService.getRoles(companyId);
-				short empCount = (short) rolenames.stream()
-						.filter(Name -> Name.equals(EntityCountWebPortletKeys.ROLE_EMPLOYEE)).count();
-				renderRequest.setAttribute(EntityCountWebPortletKeys.COUNT, empCount);
+			List<Role> rolesList =	roleLocalService.getRoles(companyID);
+			long empCount = rolesList.stream().filter(Name -> Name.getName().equals("Employee")).count();
+			renderRequest.setAttribute(EntityCountWebPortletKeys.COUNT, empCount);
 			}
 
 			renderRequest.setAttribute(EntityCountWebPortletKeys.CATEGORY, category);
