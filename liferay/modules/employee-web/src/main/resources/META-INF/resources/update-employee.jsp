@@ -3,19 +3,6 @@
 <portlet:defineObjects />
 <portlet:actionURL name="/employee/updateEmployee" var="updateEmployeeActionURL"/>
 
-<%
-	String employeeId = renderRequest.getParameter("employeeId");
-	/* String firstName = renderRequest.getParameter("firstName");
-	String lastName = renderRequest.getParameter("lastName");
-	String email = renderRequest.getParameter("email");
-	String phoneNumber = renderRequest.getParameter("phoneNumber");
-	String addressLine1 = renderRequest.getParameter("addressLine1");
-	String addressLine2 = renderRequest.getParameter("addressLine2");
-	String city = renderRequest.getParameter("city");
-	String zipCode = renderRequest.getParameter("zipCode");
-	String designation = renderRequest.getParameter("designation"); */
-%>
-
 <aui:form action="<%=updateEmployeeActionURL%>" method="POST" name="employeeForm">
 	<aui:input name="employeeId" type="text" value="${employee.employeeId }"/>
 	<aui:input name="firstName" type="text" value="${employee.firstName}"/>
