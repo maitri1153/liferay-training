@@ -7,9 +7,9 @@
 </portlet:renderURL>
 
 <div class="mb-5">
-	<a href="<%=addEmployeeRenderURL%>"
-		class="btn  btn-primary btn-default"> <i
-		class="glyphicon glyphicon-plus"></i> Add Employee
+	<a href="<%=addEmployeeRenderURL%>" class="btn  btn-primary btn-default"> 
+		<i class="glyphicon glyphicon-plus"></i> 
+		Add Employee
 	</a>
 </div>
 
@@ -27,6 +27,7 @@
 		<th>Designation</th>
 		<th colspan="2" style="width: 100px">Action</th>
 	</tr>
+	
 	<c:forEach var="employee" items="${employeeList}">
 
 		<portlet:renderURL var="updateEmployeeRenderURL">
@@ -59,18 +60,18 @@
 			<td>${employee.zipCode}</td>
 			<td>${employee.designation}</td>
 
-			<td class="text-center" style="width: 50px"><a
-				href="<%=updateEmployeeRenderURL%>"
-				class="btn  btn-primary btn-default btn-sm px-2 py-1"> <i
-					class="glyphicon glyphicon-edit"></i>
-			</a></td>
+			<td class="text-center" style="width: 50px">
+				<a href="<%=updateEmployeeRenderURL%>" class="btn btn-default btn-sm px-2 py-1"> 
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+			</td>
 
-			<td class="text-center" style="width: 50px"><a
-				href="<%=deleteEmployeeActionURL%>"
-				class="btn  btn-primary btn-default btn-sm px-2 py-1"
-				onclick="return confirm('Are you sure you want to delete this item?');">
+			<td class="text-center" style="width: 50px">
+				<a href="<%=deleteEmployeeActionURL%>" class="btn btn-default btn-sm px-2 py-1"
+					onclick="return confirm('Are you sure you want to delete this item?');">
 					<i class="glyphicon glyphicon-remove"></i>
-			</a></td>
+				</a>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
