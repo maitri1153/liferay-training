@@ -13,21 +13,16 @@ import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
-import com.liferay.journal.model.JournalArticle;
-import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Role;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.service.ImageLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.roles.admin.search.RoleSearch;
 
 @Component(
     property = {"com.liferay.portlet.display-category=category.sample",
@@ -74,7 +69,7 @@ public class EntityCountWebPortlet extends MVCPortlet {
 					EntityCountWebPortletKeys.IMAGE);
 			ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 			long groupId = themeDisplay.getScopeGroupId();
-			long companyID = themeDisplay.getCompanyId();
+			long companyId = themeDisplay.getCompanyId();
 
 			if (category.equalsIgnoreCase(EntityCountWebPortletKeys.IMAGE)) {
 				int imageCount = dlfileentryLocalService.getDLFileEntriesCount();
@@ -95,9 +90,10 @@ public class EntityCountWebPortlet extends MVCPortlet {
 			}
 
 			if (category.equalsIgnoreCase(EntityCountWebPortletKeys.EMPLOYEE)) {
-			List<Role> rolesList =	roleLocalService.getRoles(companyID);
-			long empCount = rolesList.stream().filter(Name -> Name.getName().equals("Employee")).count();
-			renderRequest.setAttribute(EntityCountWebPortletKeys.COUNT, empCount);
+				Role role = roleLocalService.getRole(companyId,EntityCountWebPortletKeys.EMPLOYEE);
+				List<UserGroupRole> userList = usergrouproleLocalService.getUserGroupRolesByGroupAndRole(groupId, role.getRoleId());
+				int empCount = userList.size();
+				renderRequest.setAttribute(EntityCountWebPortletKeys.COUNT, empCount);  
 			}
 
 			renderRequest.setAttribute(EntityCountWebPortletKeys.CATEGORY, category);
