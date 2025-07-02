@@ -44,6 +44,6 @@
 	</ul>
 	<button class="logoutButton">
 		<a class="text-dark pr-2" href="${sign_out_url}">${logout_text}
-		<img src="${images_folder}/sign-out.png"/></a>
+		<img src="${images_folder}/sign-out.png" class="pl-3"/></a>
 	</button>
 </nav>
