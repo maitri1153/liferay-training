@@ -12,6 +12,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -19,7 +20,7 @@ import com.liferay.portal.kernel.util.Validator;
 @Component(
 	property = { 
 		"javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
-		"mvc.command.name=/employee/updateEmployee"
+		"mvc.command.name=/updateEmployee"
 	}, service = MVCActionCommand.class
 )
 
@@ -32,6 +33,9 @@ public class UpdateEmployeeAction extends BaseMVCActionCommand{
 
 	@Reference
 	EmployeeDetailLocalService employeedetailLocalService;
+	
+	@Reference
+	UserLocalService userLocalService;
 	
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) 

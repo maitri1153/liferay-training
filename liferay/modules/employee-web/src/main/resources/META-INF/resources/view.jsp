@@ -6,16 +6,15 @@
 	<portlet:param name="mvcPath" value="/add-employee.jsp"/>
 </portlet:renderURL>
 
-<div class="mb-5">
-	<a href="<%=addEmployeeRenderURL%>" class="btn  btn-primary btn-default"> 
-		<i class="glyphicon glyphicon-plus"></i> 
-		Add Employee
+<div class="addEmpDiv">
+	<h2 class="float-left">Employees</h2>
+	<a href="<%=addEmployeeRenderURL%>" class="btn btn-default addEmpButton"> 
+		ADD NEW EMPLOYEE
 	</a>
 </div>
 
 <table class="table table-striped">
 	<tr>
-		<th>Id</th>
 		<th>First Name</th>
 		<th>Last Name</th>
 		<th>Email</th>
@@ -49,7 +48,6 @@
 		</portlet:actionURL>
 
 		<tr>
-			<td>${employee.employeeId}</td>
 			<td>${employee.firstName}</td>
 			<td>${employee.lastName}</td>
 			<td>${employee.email}</td>
@@ -62,14 +60,14 @@
 
 			<td class="text-center" style="width: 50px">
 				<a href="<%=updateEmployeeRenderURL%>" class="btn btn-default btn-sm px-2 py-1"> 
-					<i class="glyphicon glyphicon-edit"></i>
+					<i class="glyphicon glyphicon-pencil"></i>
 				</a>
 			</td>
 
 			<td class="text-center" style="width: 50px">
 				<a href="<%=deleteEmployeeActionURL%>" class="btn btn-default btn-sm px-2 py-1"
 					onclick="return confirm('Are you sure you want to delete this item?');">
-					<i class="glyphicon glyphicon-remove"></i>
+					<i class="glyphicon glyphicon-trash"></i>
 				</a>
 			</td>
 		</tr>

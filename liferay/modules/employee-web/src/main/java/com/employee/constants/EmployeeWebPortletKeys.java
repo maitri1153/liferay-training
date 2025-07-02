@@ -12,6 +12,8 @@ public class EmployeeWebPortletKeys {
 	
 	public static final String EMAIL = "email";
 	
+	public static final String EMPLOYEE = "employee";
+	
 	public static final String EMPLOYEE_ID = "employeeId";
 	
 	public static final String EMPLOYEEWEB = "com_employee_EmployeeWebPortlet";

@@ -41,8 +41,9 @@
 					<div class="siteNameDiv mt-2">
 						<p class="siteName pl-2">${site_name}</p>
 					</div>
-    				<img src="${portraitURL}" alt="User Profile Picture" class="rounded-circle mt-3 profilePicture">
-    				
+					<div>
+    					<img src="${portraitURL}" alt="User Profile Picture" class="rounded-circle mt-3 profilePicture">
+    				</div>
     				<p class="userName m-0 mt-3" role="presentation">${user_name}</p>
     				
 					<#if roles?has_content>
@@ -82,7 +83,7 @@
 				</#if>
 				</div>
 			</div>
-	    
+			
 		</section>
    	</div>
 </div>
