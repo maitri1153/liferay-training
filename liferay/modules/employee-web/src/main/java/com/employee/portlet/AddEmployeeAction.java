@@ -1,29 +1,31 @@
 package com.employee.portlet;
 
-import java.util.Date;
+import java.util.Locale;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
 import com.employee.constants.EmployeeWebPortletKeys;
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.service.EmployeeDetailLocalService;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
-import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 @Component(
 	property = { 
@@ -47,9 +49,6 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 	
 	@Reference
 	RoleLocalService roleLocalService;
-	
-	@Reference
-	GroupLocalService groupLocalService;
 
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) 
@@ -63,12 +62,34 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 
 		long companyId = themeDisplay.getCompanyId();
 		
-		Group guestGroup = groupLocalService.getGroup(companyId, GroupConstants.GUEST);
+		long currentuserId = themeDisplay.getUserId();
 		
+		User currentUser = themeDisplay.getUser(); 
+		
+		String currentUserName = currentUser.getScreenName();
+	
 		Role role = roleLocalService.getRole(companyId,EmployeeWebPortletKeys.EMPLOYEE);
 		long roleId = role.getRoleId();
 		long[] roleIds = new long[5];
 		roleIds[0]  = roleId;
+		
+		long[] groupIds = new long[5];
+		groupIds[0] = groupId;
+		
+		long[] organizationIds = new long[5];
+		organizationIds = null;
+		
+		long[] userGroupIds = new long[5];
+		userGroupIds = null;
+		
+		String password1 ="test";
+		
+		String password2="test";
+		
+		Locale locale = LocaleUtil.getDefault();
+		boolean autoScreenName = true;
+		
+		boolean autoPassword = false;
 		
 		long employeeId = counterLocalService.increment(EmployeeDetail.class.getName());
 		String firstName = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.FIRSTNAME);
@@ -80,29 +101,33 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 		String city = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.CITY);
 		long zipCode = ParamUtil.getLong(actionRequest, EmployeeWebPortletKeys.ZIPCODE);
 		String designation = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.DESIGNATION);
-
-		long userId = counterLocalService.increment(User.class.getName()); 
-		User user = userLocalService.createUser(userId); 
 		
-		user.setCompanyId(companyId);
-		user.setPassword("test");
-		user.setScreenName(firstName+" "+lastName); 
-		user.setFirstName(firstName);
-		user.setLastName(lastName); 
-		user.setEmailAddress(email);
-		user.setJobTitle(designation); 
-		user.setGroupId(groupId);
-		user.setGroup(guestGroup);
-		user.setRoleIds(roleIds);
-		user.setType(UserConstants.TYPE_REGULAR);
-		user.setModifiedDate(new Date());
-		user.setCreateDate(new Date());
-		user.setPasswordReset(false);
-		user.setLanguageId(themeDisplay.getLanguageId());
-        user.setTimeZoneId(themeDisplay.getTimeZone().getDisplayName());
-		userLocalService.addUser(user); 
+		String screenName =firstName + " " + lastName;
 		
-		log.info(user);
+		String middleName =" ";
+		
+		int birthDay =11;
+		
+		int birthYear = 2000;
+		
+		int birthMonth = 05;
+		
+		int type =0;
+		
+		boolean male =false;
+		
+		boolean sendMail =false;
+		
+		ServiceContext serviceContext = new ServiceContext();
+		serviceContext = null;
+		
+		User user = userLocalService.addUser(currentuserId, companyId, autoPassword, password1, 
+				password2, autoScreenName, screenName, email,locale, firstName,middleName, lastName, -1, -1, 
+				male,birthMonth, birthDay,birthYear, designation, type, groupIds, organizationIds, roleIds, userGroupIds, 
+				sendMail, serviceContext);
+		user.setStatus(WorkflowConstants.STATUS_APPROVED);
+		user.setPasswordEncrypted(false);
+		userLocalService.updateUser(user);
 		
 		EmployeeDetail employee = employeedetailLocalService.createEmployeeDetail(employeeId);
 		employee.setEmployeeId(employeeId);
@@ -116,7 +141,8 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 		employee.setZipCode(zipCode);
 		employee.setDesignation(designation);
 		employee.setGroupId(groupId);
-//		employee.setGroupId(groupId);
+		employee.setUserId(currentuserId);
+		employee.setUserName(currentUserName);
 		
 		employeedetailLocalService.addEmployeeDetail(employee);
 		

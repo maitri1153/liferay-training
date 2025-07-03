@@ -2,20 +2,25 @@ package com.employee.portlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
 import com.employee.constants.EmployeeWebPortletKeys;
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.service.EmployeeDetailLocalService;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 
 @Component(
 	property = { 
@@ -43,6 +48,9 @@ public class UpdateEmployeeAction extends BaseMVCActionCommand{
 		
 		log.info("Update Action method is started");
 		
+		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		long companyId = themeDisplay.getCompanyId();
+		
 		long employeeId = ParamUtil.getLong(actionRequest, EmployeeWebPortletKeys.EMPLOYEE_ID, GetterUtil.DEFAULT_LONG);
 		String firstName = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.FIRSTNAME, GetterUtil.DEFAULT_STRING);
 		String lastName = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.LASTNAME, GetterUtil.DEFAULT_STRING);
@@ -55,11 +63,10 @@ public class UpdateEmployeeAction extends BaseMVCActionCommand{
 		String designation = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.DESIGNATION, GetterUtil.DEFAULT_STRING);
 
 		EmployeeDetail employee = null;
-		try {
 			employee = employeedetailLocalService.getEmployeeDetail(employeeId);
-		} catch (Exception e) {
-			log.error("error in update action");
-		}
+			employee.getEmail();
+			
+		    User user =	userLocalService.getUserByEmailAddress(companyId, email);
 
 		if (Validator.isNotNull(employee)) {
 			employee.setFirstName(firstName);
@@ -72,8 +79,15 @@ public class UpdateEmployeeAction extends BaseMVCActionCommand{
 			employee.setZipCode(zipCode);
 			employee.setDesignation(designation);
 			employeedetailLocalService.updateEmployeeDetail(employee);
-			
 			log.info("Employee Detail is updated");
+		}
+		
+		if(Validator.isNotNull(user)) {
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setEmailAddress(email);
+			user.setJobTitle(designation);
+			userLocalService.updateUser(user);
 		}
 	}
 }
