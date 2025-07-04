@@ -2,10 +2,8 @@ package com.employee.portlet;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-
 import com.employee.constants.EmployeeWebPortletKeys;
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.service.EmployeeDetailLocalService;
@@ -51,7 +49,6 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 		long employeeId = ParamUtil.getLong(actionRequest, EmployeeWebPortletKeys.EMPLOYEE_ID, GetterUtil.DEFAULT_LONG);
 
 		try {
-
 			EmployeeDetail employee = employeedetailLocalService.getEmployeeDetail(employeeId);
 			String userEmail = employee.getEmail();
 			employeedetailLocalService.deleteEmployeeDetail(employeeId);
@@ -60,7 +57,7 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 			User user = userLocalService.getUserByEmailAddress(companyId, userEmail);
 			long userId = user.getUserId();
 			log.info(userId);
-			/* userLocalService.deleteUser(userId); */
+			userLocalService.deleteUser(userId);
 
 		} catch (Exception e) {
 			log.error("error in deleteActionCommand");

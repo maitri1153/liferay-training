@@ -6,7 +6,8 @@
 	padding-left: 15px;
 	padding-right: 15px;
 	margin-right: 20px;
-	font-size: 14px;
+	font-size: 13px;
+	margin-top: 5px;
 }
 
 input::placeholder {
@@ -84,13 +85,15 @@ input::placeholder {
 .table-list {
 	border: none;
 }
-tr{
+
+tr {
 	display: block;
 	line-break: anywhere;
 	font-family: Poppins;
 	font-weight: 400;
 	font-size: 14px;
 }
+
 .table th {
 	font-family: Montserrat;
 	font-weight: 600;
@@ -101,68 +104,107 @@ tr{
 	padding: 0px;
 	text-align: left;
 }
+
 lfr-search-container-wrapper a:not(.component-action):not(.btn) {
-    color: #898989;
-    font-weight: 500;
-    text-decoration: none;
+	color: #898989;
+	font-weight: 500;
+	text-decoration: none;
 }
+
 .page-item {
-    margin-left: 4px;
-    margin-right:4px;
+	margin-left: 4px;
+	margin-right: 4px;
 }
-.table td:first-child, .table .table-column-start {
+
+.table td:first-child,
+.table .table-column-start {
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
-.table td:last-child, .table .table-column-start {
+
+.table td:last-child,
+.table .table-column-start {
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
 
-.table tbody tr{
+.table tbody tr {
 	margin-bottom: 10px;
 }
 
-.page-link{
+.page-link {
 	border-radius: 50%;
 }
 
-.page-item:last-child .page-link, .page-link-last, .page-item:first-child .page-link{
+.page-item:last-child .page-link,
+.page-link-last,
+.page-item:first-child .page-link {
 	border-radius: 50%;
 }
-.table-list.table-striped tbody tr:nth-of-type(odd) td, .table-list.table-striped tbody tr:nth-of-type(odd) th {
-     background-color:white;	
+
+.table-list.table-striped tbody tr:nth-of-type(odd) td,
+.table-list.table-striped tbody tr:nth-of-type(odd) th {
+	background-color: white;
 }
 
-.table-list.table-striped tbody tr:nth-of-type(even) td, .table-list.table-striped tbody tr:nth-of-type(even) th {
-     background-color:white;
+.table-list.table-striped tbody tr:nth-of-type(even) td,
+.table-list.table-striped tbody tr:nth-of-type(even) th {
+	background-color: white;
 }
 
-.table-heading-nowrap thead td, .table-heading-nowrap thead th {
-    background-color: #F0F1F1;
+.table-heading-nowrap thead td,
+.table-heading-nowrap thead th {
+	background-color: #f7f7f7;
 }
-.table-list tbody ,.container-view{
-	background-color: #F0F1F1;
+
+.table-list tbody,
+.container-view {
+	background-color: #f7f7f7;
 	padding: 0px;
 }
-.portlet-decorate .portlet-content{
-	padding-left: 0%;
-	padding-right: 0%;
-	border: none;
+
+.portlet-decorate .portlet-content {
+	background-color: #f7f7f7;
 }
-.page-link{
+
+.table th:last-child {
+	padding-left: 10px;
+}
+
+.page-link {
 	color: #898989;
 }
-.page-item.active .page-link{
-	border-color:#898989 ;
-	background-color:#898989 ;
+
+.page-item.active .page-link {
+	border-color: #898989;
+	background-color: #898989;
 	color: #FFFFFF;
 }
+
 .lfr-search-container-wrapper a:not(.component-action):not(.btn) {
-	text-decoration: none;	
+	text-decoration: none;
+	background-color: transparent;
 }
-.employeeList{
-	background-color:#F0F1F1;	
+
+.table th:nth-child(5),
+.table td:nth-child(5),
+.table .table-column-start {
+	width: 1.5%;
+}
+
+.lfr-portal-tooltip {
+	padding-left: 10px;
+}
+
+.page-item.disabled .page-link {
+	background-color: transparent;
+	color: #89898989;
+}
+
+
+
+.employeeList {
+	background-color: #f7f7f7;
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -170,4 +212,25 @@ lfr-search-container-wrapper a:not(.component-action):not(.btn) {
 .empFormDiv {
 	width: 1000px;
 	justify-self: center;
+}
+
+.addEmployeePage {
+	border-radius: 15px;
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+
+.updateEmployeePage {
+	border-radius: 15px;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	padding-left: 200px;
+}
+
+.employeeText {
+	font-family: Poppins;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 100%;
+	padding-top: 15px;
 }

@@ -2,24 +2,24 @@
 @import 'liferay-font-awesome/scss/glyphicons';
 
 @font-face {
-  font-family: Poppins;
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff) format('woff');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+	font-family: Poppins;
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400;
+	src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff) format('woff');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-.portlet-header{
+.portlet-header {
 	display: none;
 }
 
-.siteNameDiv{
+.siteNameDiv {
 	border-left: 4px #00979E solid;
 }
 
-.siteName{
-	font-family:Poppins;
+.siteName {
+	font-family: Poppins;
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 100%;
@@ -27,65 +27,71 @@
 	margin-top: 10px;
 }
 
-.sideBar{
-	width:270px;
-	justify-content: center;	
+.sideBar {
+	width: 270px;
+	justify-content: center;
 	justify-items: center;
 	position: fixed;
 	background-color: #F0F1F1;
 	height: 100%;
 }
 
-.contentDiv{
+.contentDiv {
 	margin-left: 270px;
-	
+
 }
 
-.profilePicture{
+.profilePicture {
 	height: 135px;
 }
 
-.userName{
+.userName {
 	font-family: Poppins;
 	font-weight: 700;
 	font-size: 17px;
 	line-height: 100%;
 }
 
-.roles{
-	font-family:Poppins;
+.roles {
+	font-family: Poppins;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 100%;
 	color: #00979E;
 }
 
-#navigation{
+#navigation {
 	height: 370px;
 	width: 193px;
 	margin-top: 50px;
+	font-family: Poppins;
 }
-.pageList{
+
+.pageList {
 	height: 35px;
 	margin-bottom: 20px;
 	padding-left: 30px;
 	align-content: center;
 }
-.pageName{
-	color:black;
+
+.pageName {
+	color: black;
 	font-size: 14px;
-	font-weight: 500;	
+	font-weight: 500;
+	font-family: Poppins;
 }
-.selected{
+
+.selected {
 	border-radius: 4px;
 	background-color: #00979E;
-	padding-left:30px ;
-	a > span{
-		color:white;
+	padding-left: 30px;
+
+	a>span {
+		color: white;
 	}
 }
 
-.logoutButton{
+.logoutButton {
 	font-family: Poppins;
 	font-weight: 500;
 	font-size: 15px;
@@ -96,24 +102,25 @@
 	justify-self: anchor-center;
 }
 
-.roleName{
+.roleName {
 	justify-items: center;
 }
 
-.breadcrumb{
+.breadcrumb {
 	background-color: white;
 	padding-left: 10px;
 }
 
-.topNavigation{
+.topNavigation {
+	font-family: Poppins;
 	z-index: 1000;
 	width: -webkit-fill-available;
 }
 
-.content{
+.content {
 	margin-top: 55px;
 }
 
-.layout-logo{
+.layout-logo {
 	padding-right: 10px;
 }

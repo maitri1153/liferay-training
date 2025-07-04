@@ -1,30 +1,26 @@
 <%@ include file="init.jsp"%>
-<%@page import="java.util.List"%>
-<%@page import="com.liferay.portal.kernel.model.User"%>
-<%@page import="com.liferay.portal.kernel.util.ListUtil"%>
-<%@page import="com.liferay.portal.kernel.service.UserLocalServiceUtil"%>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui"%>
 
-
-<%
-List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("employeeList");
-%>
+<% List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("employeeList");%>
 
 <portlet:renderURL var="addEmployeeRenderURL">
-	<portlet:param name="mvcPath" value="/add-employee.jsp" />
+	<portlet:param name="mvcPath" value="/employee.jsp" />
 </portlet:renderURL>
 
 <div class="employeeList">
 
 	<div class="addEmpDiv pt-2">
-		<h2 class="float-left">Employees</h2>
-		<a href="<%=addEmployeeRenderURL%>"
-			class="btn btn-default addEmpButton"> ADD NEW EMPLOYEE </a>
+		<p class="float-left employeeText">Employees</p>
+		<a href="<%=addEmployeeRenderURL%>" class="btn btn-default addEmpButton"> 
+		   ADD NEW EMPLOYEE 
+		</a>
 	</div>
 
-	<liferay-ui:search-container total="<%=employees.size()%>"
-		var="searchContainer" delta="8" deltaConfigurable="true"
-		emptyResultsMessage="Oops. There Are No Users To Display, Please add Employees">
+	<liferay-ui:search-container 
+			total="<%=employees.size()%>"
+			var="searchContainer" 
+			delta="8" 
+			deltaConfigurable="true"
+			emptyResultsMessage="Oops. There Are No Users To Display, Please add Employees">
 
 		<liferay-ui:search-container-results
 			results="<%=ListUtil.subList(employees, searchContainer.getStart(), searchContainer.getEnd())%>" />
@@ -34,7 +30,7 @@ List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("em
 			modelVar="employee" keyProperty="employeeId">
 
 			<portlet:renderURL var="updateEmployeeRenderURL">
-				<portlet:param name="mvcPath" value="/update-employee.jsp" />
+				<portlet:param name="mvcPath" value="/add-employee.jsp" />
 				<portlet:param name="firstName" value="${employee.firstName}" />
 				<portlet:param name="lastName" value="${employee.lastName}" />
 				<portlet:param name="phoneNumber" value="${employee.phoneNumber}" />
@@ -52,25 +48,26 @@ List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("em
 				<portlet:param name="employeeId" value="${employee.employeeId}" />
 			</portlet:actionURL>
 
+			<liferay-ui:search-container-column-text name="Employee ID"
+				value="${employee.employeeId}"/>
+				
 			<liferay-ui:search-container-column-text name="Name"
-				value="${employee.firstName} ${employee.lastName}"
-				orderable="true" />
+				value="${employee.firstName} ${employee.lastName}"/>
 
 			<liferay-ui:search-container-column-text name="Designation"
-				property="designation" value="${employee.designation}" />
+				property="designation" value="${employee.designation}"/>
 
 			<liferay-ui:search-container-column-text name="Phone"
-				property="phoneNumber" value="${employee.phoneNumber}" />
+				property="phoneNumber" value="${employee.phoneNumber}"/>
 
 			<liferay-ui:search-container-column-text name="Email"
-				value="${employee.email}" />
+				property="email" value="${employee.email}"/>
 
-			<liferay-ui:search-container-column-text name="City" property="city"
-				value="${employee.city }" />
+			<liferay-ui:search-container-column-text name="City" 
+				property="city" value="${employee.city }" />
 
 			<liferay-ui:search-container-column-text name="Actions">
 				<div class="icon-container">
-					<!-- CSS or Clay component for layout -->
 					<liferay-ui:icon image="edit" message="Edit"
 						url="<%=updateEmployeeRenderURL%>" />
 					<liferay-ui:icon image="delete" message="Delete"
@@ -79,8 +76,9 @@ List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("em
 				</div>
 			</liferay-ui:search-container-column-text>
 
-
 		</liferay-ui:search-container-row>
+		
 		<liferay-ui:search-iterator markupView="lexicon" />
+	
 	</liferay-ui:search-container>
 </div>
