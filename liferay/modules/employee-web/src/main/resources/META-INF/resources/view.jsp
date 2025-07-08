@@ -30,7 +30,7 @@
 			modelVar="employee" keyProperty="employeeId">
 
 			<portlet:renderURL var="updateEmployeeRenderURL">
-				<portlet:param name="mvcPath" value="/add-employee.jsp" />
+				<portlet:param name="mvcPath" value="/employee.jsp" />
 				<portlet:param name="firstName" value="${employee.firstName}" />
 				<portlet:param name="lastName" value="${employee.lastName}" />
 				<portlet:param name="phoneNumber" value="${employee.phoneNumber}" />

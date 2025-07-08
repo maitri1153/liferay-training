@@ -81,9 +81,7 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 			log.info("Add Employee action method is started");
 			
 			Role role = roleLocalService.getRole(companyId,RoleConstants.USER);
-			long roleId = role.getRoleId();
-			long[] roleIds = new long[5];
-			roleIds[0] = roleId;
+			long[] roleIds = {role.getRoleId()};
 
 			long[] groupIds = new long[5];
 			groupIds[0] = groupId;
@@ -120,6 +118,7 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 					autoScreenName, screenName, email, locale, firstName, middleName, lastName, -1, -1, male,
 					birthMonth, birthDay, birthYear, designation, type, groupIds, organizationIds, roleIds,
 					userGroupIds, sendMail, serviceContext);
+			
 			user.setStatus(WorkflowConstants.STATUS_APPROVED);
 			user.setPasswordEncrypted(false);
 			userLocalService.updateUser(user);
