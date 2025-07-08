@@ -1,0 +1,11 @@
+apiDir: "../employee-rest-api/src/main/java"
+apiPackagePath: "com.employee.rest"
+application:
+    baseURI: "/employee-rest"
+    className: "EmployeeRestApplication"
+    name: "EmployeeRest"
+author: "ignek"
+clientDir: "../employee-rest-client/src/main/java"
+testDir: "../employee-rest-test/src/testIntegration/java"
+compatibilityVersion: 9
+changeTrackingEnabled: true

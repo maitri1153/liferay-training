@@ -1,0 +1,6 @@
+Bundle-Name: employee-rest-api
+Bundle-SymbolicName: com.employee.rest.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.employee.rest.dto.v1_0,\
+	com.employee.rest.resource.v1_0
