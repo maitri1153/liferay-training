@@ -2,13 +2,10 @@ package com.employee.rest.internal.resource.v1_0;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.constraints.NotNull;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
-
 import com.employee.rest.dto.v1_0.EmployeeDetailObject;
 import com.employee.rest.resource.v1_0.EmployeeDetailResource;
 import com.employee.service.model.EmployeeDetail;
@@ -26,7 +23,11 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 /**
  * @author ignek
  */
-@Component(properties = "OSGI-INF/liferay/rest/v1_0/employee-detail.properties", scope = ServiceScope.PROTOTYPE, service = EmployeeDetailResource.class)
+@Component(
+	properties = "OSGI-INF/liferay/rest/v1_0/employee-detail.properties", 
+	scope = ServiceScope.PROTOTYPE, service = EmployeeDetailResource.class
+)
+
 public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 
 	@Reference
@@ -39,14 +40,18 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 	UserLocalService userLocalService;
 
 	@Override
-	public EmployeeDetailObject getEmployeeDetailById(@NotNull Long employeeId) throws Exception {
+	public EmployeeDetailObject getEmployeeDetailById(@NotNull Long employeeId) 
+			throws Exception {
+		
 		EmployeeDetail employee = employeeDetailLocalService.getEmployeeDetail(employeeId);
 		EmployeeDetailObject employeeObject = getEmployeeDetailFromModel(employee);
+		log.info("Employee detail is fetched by ID");
 		return employeeObject;
 	}
 
 	@Override
-	public EmployeeDetailObject updateEmployeeDetail(EmployeeDetailObject employeeDetailObject) throws Exception {
+	public EmployeeDetailObject updateEmployeeDetail(EmployeeDetailObject employeeDetailObject) 
+			throws Exception {
 
 		long groupId = contextUser.getGroupId();
 		long userID = contextUser.getUserId();
@@ -81,6 +86,7 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 				employee.setCity(city);
 				employee.setZipCode(zipCode);
 				employee = employeeDetailLocalService.updateEmployeeDetail(employee);
+				log.info("Employee detail is Updated");
 			}else {
 				employeeId = counterLocalService.increment(EmployeeDetail.class.getName());
 				EmployeeDetail employee = employeeDetailLocalService.createEmployeeDetail(employeeId);
@@ -97,11 +103,12 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 				employee.setUserId(userID);
 				employee.setUserName(userName);
 				employee = employeeDetailLocalService.addEmployeeDetail(employee);
+				log.info("Employee detail is Inserted");
 			}
 			employeeDetailObject.setEmployeeId(employeeId);
 			
 		} catch (Exception e) {
-			log.info(e);
+			log.error(e);
 		}
 		return employeeDetailObject;
 	}
@@ -112,6 +119,7 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 		EmployeeDetailObject employeeObject = new EmployeeDetailObject();
 		try {
 			employeeDetailLocalService.deleteEmployeeDetail(employeeID);
+			log.info("Employee data is deleted");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
@@ -119,12 +127,15 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 	}
 	
 	@Override
-	public Page<EmployeeDetailObject> getEmployees(Pagination pagination) throws Exception {
+	public Page<EmployeeDetailObject> getEmployees(Pagination pagination) 
+			throws Exception {
+		
 		List<EmployeeDetail> employees = employeeDetailLocalService.getEmployeeDetails(-1, -1);
 		List<EmployeeDetailObject> employeeObjects = new ArrayList<>();
 		for(EmployeeDetail employee : employees) {
 			employeeObjects.add(getEmployeeDetailFromModel(employee));
 		}
+		log.info("All Employee Data is Fetched");
 		return Page.of(employeeObjects);
 	}
 	
