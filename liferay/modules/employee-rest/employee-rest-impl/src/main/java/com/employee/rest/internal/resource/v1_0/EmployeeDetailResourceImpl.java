@@ -129,15 +129,15 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 	@Override
 	public Page<EmployeeDetailObject> getEmployees(Pagination pagination) 
 			throws Exception {
-		
 		List<EmployeeDetail> employees = employeeDetailLocalService.getEmployeeDetails(-1, -1);
-		List<EmployeeDetailObject> employeeObjects = new ArrayList<>();
+		List<EmployeeDetailObject> employeeObject = new ArrayList<>();
 		for(EmployeeDetail employee : employees) {
-			employeeObjects.add(getEmployeeDetailFromModel(employee));
+			employeeObject.add(getEmployeeDetailFromModel(employee));
 		}
-		log.info("All Employee Data is Fetched");
-		return Page.of(employeeObjects);
+		log.info("Employee Details are fetched");
+		return Page.of(employeeObject);
 	}
+	
 	
 	private EmployeeDetailObject getEmployeeDetailFromModel(EmployeeDetail employee) {
 		EmployeeDetailObject employeeObject = new EmployeeDetailObject();
@@ -155,4 +155,5 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 	}
 
 	public static final Log log = LogFactoryUtil.getLog(EmployeeDetailResourceImpl.class);
+	
 }
