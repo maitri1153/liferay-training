@@ -23,6 +23,16 @@ input::placeholder {
 	color: white;
 }
 
+.modal-footer {
+	border: none;
+	justify-content: end;
+}
+
+.modal-body {
+	align-content: center;
+	padding-left: 50px;
+}
+
 .addEmpDiv {
 	font-family: Poppins;
 	height: 60px;
@@ -201,7 +211,44 @@ lfr-search-container-wrapper a:not(.component-action):not(.btn) {
 	color: #89898989;
 }
 
+.modal-content {
+	width: 508px;
+	height: 190px;
+	justify-self: center;
+	border: 1px black solid;
+}
 
+.popupText {
+	font-family: Poppins;
+	font-weight: 500;
+	font-size: 22px;
+	line-height: 100%;
+	vertical-align: middle;
+}
+
+.noBtn {
+	border: 1px black solid;
+	padding-left: 40px;
+	padding-right: 40px;
+	font-family: Poppins;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 100%;
+	vertical-align: middle;
+}
+
+.yesBtn {
+	border: 1px #00979E solid;
+	background-color: #00979E;
+	color: white;
+	padding-left: 40px;
+	padding-right: 40px;
+	font-family: Poppins;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 100%;
+	vertical-align: middle;
+}
 
 .employeeList {
 	background-color: #f7f7f7;
