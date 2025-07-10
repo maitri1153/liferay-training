@@ -58,7 +58,6 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 			long userId = user.getUserId();
 			userLocalService.deleteUser(userId);
 			log.info("User data is deleted");
-
 		} catch (Exception e) {
 			log.error("error in deleteActionCommand");
 		}

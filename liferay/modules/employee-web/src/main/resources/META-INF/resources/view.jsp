@@ -41,13 +41,12 @@
 				<portlet:param name="employeeId" value="${employee.employeeId}" />
 			</portlet:renderURL>
 
-			<portlet:actionURL name="/deleteEmployee"
-				var="deleteEmployeeActionURL">
+			<portlet:actionURL name="/deleteEmployee" var="deleteEmployeeActionURL">
 				<portlet:param name="employeeId" value="${employee.employeeId}" />
 			</portlet:actionURL>
 			
 			<portlet:resourceURL id="/download" var="downloadURL" >
-				<portlet:param name="employeeData" value="${employee}"/>
+				<portlet:param name="employeeId" value="${employee.employeeId}"/>
 			</portlet:resourceURL>
 
 			<liferay-ui:search-container-column-text name="Employee ID"
@@ -71,17 +70,23 @@
 
 			<liferay-ui:search-container-column-text name="Actions">
 				<div class="icon-container">
-					<liferay-ui:icon image="edit" message="Edit"
-						url="<%=updateEmployeeRenderURL%>" />
-					<button type="button" class="btn" data-toggle="modal"
-						data-target="#exampleModal"><i class="bi bi-trash text-info"></i></button>
+					<button class="btn" type="button">
+						<a href="${updateEmployeeRenderURL}">
+							<i class="bi bi-pencil text-info"></i>
+						</a>
+					</button>
+					<button type="button" class="btn" data-toggle="modal" 
+						data-target="#exampleModal">
+						<i class="bi bi-trash text-info"></i>
+					</button>
 					<button type="button" class="btn">
-					<i class="bi bi-download text-info"></i></button>
+						<a href="<%=downloadURL%>">
+							<i class="bi bi-arrow-down-circle text-info"></i>
+						</a>
+					</button>
 				</div>
 			</liferay-ui:search-container-column-text>
-			
 		</liferay-ui:search-container-row>
-		
 		<liferay-ui:search-iterator markupView="lexicon" />
 	</liferay-ui:search-container>
 </div>
@@ -96,7 +101,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn noBtn" data-dismiss="modal">NO</button>
-				<a href="<%=deleteEmployeeActionURL%>"><button type="button"
+				<a href="${deleteEmployeeActionURL}"><button type="button"
 						class="btn yesBtn">YES</button></a>
 			</div>
 		</div>

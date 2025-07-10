@@ -145,11 +145,10 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 		} else {
 			
 			log.info("Update Employee action method is started");
-		
 			EmployeeDetail employee = employeedetailLocalService.getEmployeeDetail(Long.parseLong(employeeId));
-			employee.getEmail();
+			String userEmail = employee.getEmail();
 
-			User user = userLocalService.getUserByEmailAddress(companyId, email);
+			User user = userLocalService.getUserByEmailAddress(companyId, userEmail);
 
 			if (Validator.isNotNull(employee)) {
 				employee.setFirstName(firstName);
