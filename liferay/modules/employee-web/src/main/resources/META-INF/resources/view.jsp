@@ -70,16 +70,16 @@
 
 			<liferay-ui:search-container-column-text name="Actions">
 				<div class="icon-container">
-					<button class="btn" type="button">
+					<button class="btn pl-1 pr-1" type="button">
 						<a href="${updateEmployeeRenderURL}">
 							<i class="bi bi-pencil text-info"></i>
 						</a>
 					</button>
-					<button type="button" class="btn" data-toggle="modal" 
+					<button type="button" class="btn pl-1 pr-1" data-toggle="modal" 
 						data-target="#exampleModal">
 						<i class="bi bi-trash text-info"></i>
 					</button>
-					<button type="button" class="btn">
+					<button type="button" class="btn pl-1 pr-1">
 						<a href="<%=downloadURL%>">
 							<i class="bi bi-arrow-down-circle text-info"></i>
 						</a>
