@@ -11,14 +11,19 @@ import com.employee.service.service.EmployeeDetailLocalService;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Address;
+import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserConstants;
-import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.service.AddressLocalService;
+import com.liferay.portal.kernel.service.ContactLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -27,28 +32,33 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
-@Component(
-	property = { 
-		"javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
-		"mvc.command.name=/addEmployee" 
-	}, service = MVCActionCommand.class
-)
+@Component(property = { "javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
+		"mvc.command.name=/addEmployee" }, service = MVCActionCommand.class)
 
 public class AddEmployeeAction extends BaseMVCActionCommand {
 
-	private static Log log = LogFactoryUtil.getLog(AddEmployeeAction.class);
+	private static final Log log = LogFactoryUtil.getLog(AddEmployeeAction.class);
+
+	@Reference
+	AddressLocalService addressLocalService;
 
 	@Reference
 	CounterLocalService counterLocalService;
 
 	@Reference
+	ContactLocalService contatctLocalService;
+
+	@Reference
 	EmployeeDetailLocalService employeedetailLocalService;
+
+	@Reference
+	RoleLocalService roleLocalService;
 
 	@Reference
 	UserLocalService userLocalService;
 
 	@Reference
-	RoleLocalService roleLocalService;
+	UserGroupRoleLocalService userGroupRoleLocalService;
 
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
@@ -56,16 +66,12 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		long groupId = themeDisplay.getScopeGroupId();
-
 		long companyId = themeDisplay.getCompanyId();
-		
 		long currentuserId = themeDisplay.getUserId();
-		
 		User currentUser = themeDisplay.getUser();
-		
 		String currentUserName = currentUser.getScreenName();
-		
-		String employeeId = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.EMPLOYEE_ID);
+
+		long employeeId = ParamUtil.getLong(actionRequest, EmployeeWebPortletKeys.EMPLOYEE_ID);
 		String firstName = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.FIRSTNAME);
 		String lastName = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.LASTNAME);
 		String email = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.EMAIL);
@@ -76,53 +82,95 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 		long zipCode = ParamUtil.getLong(actionRequest, EmployeeWebPortletKeys.ZIPCODE);
 		String designation = ParamUtil.getString(actionRequest, EmployeeWebPortletKeys.DESIGNATION);
 
-		if (employeeId.isBlank()) {
-			
+		if (employeeId > 0) {
+
+			log.info("Update Employee action method is started");
+			EmployeeDetail employee = employeedetailLocalService.getEmployeeDetail(employeeId);
+			String userEmail = employee.getEmail();
+
+			User user = userLocalService.getUserByEmailAddress(companyId, userEmail);
+
+			if (Validator.isNotNull(employee)) {
+				employee.setFirstName(firstName);
+				employee.setLastName(lastName);
+				employee.setEmail(email);
+				employee.setPhoneNumber(phoneNumber);
+				employee.setAddressLine1(addressLine1);
+				employee.setAddressLine2(addressLine2);
+				employee.setCity(city);
+				employee.setZipCode(zipCode);
+				employee.setDesignation(designation);
+				employeedetailLocalService.updateEmployeeDetail(employee);
+
+				log.info("Employee Detail is updated");
+			}
+
+			if (Validator.isNotNull(user)) {
+				user.setFirstName(firstName);
+				user.setLastName(lastName);
+				user.setEmailAddress(email);
+				user.setJobTitle(designation);
+				userLocalService.updateUser(user);
+
+				log.info("User information is updated");
+			}
+
+		} else {
 			log.info("Add Employee action method is started");
-			
-			Role role = roleLocalService.getRole(companyId,RoleConstants.USER);
-			long[] roleIds = {role.getRoleId()};
+
+			Role empRoles = roleLocalService.getRole(companyId, EmployeeWebPortletKeys.EMPLOYEE);
+			long empId = empRoles.getRoleId();
 
 			long[] groupIds = new long[5];
 			groupIds[0] = groupId;
-
-			long[] organizationIds = new long[5];
-			organizationIds = null;
-
-			long[] userGroupIds = new long[5];
-			userGroupIds = null;
 
 			String password1 = "test";
 			String password2 = "test";
 			String screenName = firstName + lastName;
 			String middleName = null;
-			
+
 			int birthDay = 11;
 			int birthYear = 2000;
 			int birthMonth = 05;
 			int type = UserConstants.TYPE_REGULAR;
-			
+
 			boolean autoScreenName = true;
 			boolean autoPassword = false;
 			boolean male = false;
 			boolean sendMail = false;
-			
+
 			Locale locale = LocaleUtil.getDefault();
 
 			ServiceContext serviceContext = new ServiceContext();
-			serviceContext = null;
-			
+			serviceContext = ServiceContextFactory.getInstance(User.class.getName(), actionRequest);
+			;
+
+			long addressId = counterLocalService.increment(Address.class.getName());
 			long newEmployeeId = counterLocalService.increment(EmployeeDetail.class.getName());
 
 			User user = userLocalService.addUser(currentuserId, companyId, autoPassword, password1, password2,
 					autoScreenName, screenName, email, locale, firstName, middleName, lastName, -1, -1, male,
-					birthMonth, birthDay, birthYear, designation, type, groupIds, organizationIds, roleIds,
-					userGroupIds, sendMail, serviceContext);
-			
+					birthMonth, birthDay, birthYear, designation, type, groupIds, null, null, null, sendMail,
+					serviceContext);
+
+			userGroupRoleLocalService.addUserGroupRole(user.getUserId(), groupId, empId);
 			user.setStatus(WorkflowConstants.STATUS_APPROVED);
 			user.setPasswordEncrypted(false);
 			userLocalService.updateUser(user);
 			log.info("User is added");
+
+			long contactId = user.getContactId();
+			Address address = addressLocalService.createAddress(addressId);
+			address.setCity(city);
+			address.setStreet1(addressLine1);
+			address.setStreet2(addressLine2);
+			String zip = String.valueOf(zipCode);
+			address.setZip(zip);
+			address.setClassPK(contactId);
+			String className = Contact.class.getName();
+			addressLocalService.addAddress(null, currentuserId, className, contactId, null, null, addressLine1, addressLine2,
+					null, city, zip, 0, 0, 21, false, true, null, serviceContext);
+			log.info("User Address is added");
 
 			EmployeeDetail employee = employeedetailLocalService.createEmployeeDetail(newEmployeeId);
 			employee.setEmployeeId(newEmployeeId);
@@ -141,39 +189,7 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 			employeedetailLocalService.addEmployeeDetail(employee);
 
 			log.info("Employee is added");
-		
-		} else {
-			
-			log.info("Update Employee action method is started");
-			EmployeeDetail employee = employeedetailLocalService.getEmployeeDetail(Long.parseLong(employeeId));
-			String userEmail = employee.getEmail();
 
-			User user = userLocalService.getUserByEmailAddress(companyId, userEmail);
-
-			if (Validator.isNotNull(employee)) {
-				employee.setFirstName(firstName);
-				employee.setLastName(lastName);
-				employee.setEmail(email);
-				employee.setPhoneNumber(phoneNumber);
-				employee.setAddressLine1(addressLine1);
-				employee.setAddressLine2(addressLine2);
-				employee.setCity(city);
-				employee.setZipCode(zipCode);
-				employee.setDesignation(designation);
-				employeedetailLocalService.updateEmployeeDetail(employee);
-			
-				log.info("Employee Detail is updated");
-			}
-
-			if (Validator.isNotNull(user)) {
-				user.setFirstName(firstName);
-				user.setLastName(lastName);
-				user.setEmailAddress(email);
-				user.setJobTitle(designation);
-				userLocalService.updateUser(user);
-				
-				log.info("User information is updated");
-			}
 		}
 	}
 }

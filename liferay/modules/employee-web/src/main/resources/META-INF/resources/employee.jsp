@@ -12,7 +12,7 @@
 			method="POST" class="w-75">
 
 			<div class="d-none">
-				<aui:input name="employeeId" value="${employee.employeeId }"
+				<aui:input name="employeeId" value="${employee.employeeId}"
 					label="employeeId" type="text">
 				</aui:input>
 			</div>
@@ -20,16 +20,14 @@
 			<div class="row">
 				<div class="col-6">
 					<aui:input name="firstName" placeholder="Enter your first name"
-						label="First Name" value="${employee.firstName }">
-						<aui:validator name="required" />
+						label="First Name" value="${employee.firstName}">
 						<aui:validator name="required" />
 					</aui:input>
 				</div>
 
 				<div class="col-6">
 					<aui:input name="lastName" placeholder="Enter your last name"
-						label="Last Name" value="${employee.lastName }">
-						<aui:validator name="required" />
+						label="Last Name" value="${employee.lastName}">
 						<aui:validator name="required" />
 					</aui:input>
 				</div>
@@ -48,7 +46,7 @@
 					<aui:input name="email" placeholder="Enter your email"
 						label="Email" value="${employee.email}">
 						<aui:validator name="required" />
-						<aui:validator name="required" />
+						<aui:validator name="email" />
 					</aui:input>
 				</div>
 
@@ -67,7 +65,6 @@
 						placeholder="Enter your house no / Bldg. / Appt."
 						label="Address Line 1" value="${employee.addressLine1}">
 						<aui:validator name="required" />
-						<aui:validator name="required" />
 					</aui:input>
 				</div>
 
@@ -75,7 +72,6 @@
 					<aui:input name="addressLine2"
 						placeholder="Enter your street / lane / area"
 						label="Address Line 2" value="${employee.addressLine2}">
-						<aui:validator name="required" />
 						<aui:validator name="required" />
 					</aui:input>
 				</div>

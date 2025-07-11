@@ -1,6 +1,6 @@
 <%@ include file="init.jsp"%>
 
-<% List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("employeeList"); %>
+<% List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("employeeList");%>
 
 <portlet:renderURL var="addEmployeeRenderURL">
 	<portlet:param name="mvcPath" value="/employee.jsp" />
@@ -10,9 +10,8 @@
 
 	<div class="addEmpDiv pt-2">
 		<p class="float-left employeeText">Employees</p>
-		<a href="<%=addEmployeeRenderURL%>"
-			class="btn btn-default addEmpButton"> 
-				ADD NEW EMPLOYEE 
+		<a href="<%=addEmployeeRenderURL%>" class="btn btn-default addEmpButton"> 
+			ADD NEW EMPLOYEE 
 		</a>
 	</div>
 
@@ -21,7 +20,7 @@
 		emptyResultsMessage="Oops. There Are No Users To Display, Please add Employees">
 
 		<liferay-ui:search-container-results
-			results="<%=ListUtil.subList(employees, searchContainer.getStart(), searchContainer.getEnd())%>"/>
+			results="<%=ListUtil.subList(employees, searchContainer.getStart(), searchContainer.getEnd())%>" />
 
 		<liferay-ui:search-container-row
 			className="com.employee.service.model.EmployeeDetail"
@@ -39,14 +38,15 @@
 				<portlet:param name="zipCode" value="${employee.zipCode}" />
 				<portlet:param name="designation" value="${employee.designation}" />
 				<portlet:param name="employeeId" value="${employee.employeeId}" />
+				
 			</portlet:renderURL>
 
 			<portlet:actionURL name="/deleteEmployee" var="deleteEmployeeActionURL">
 				<portlet:param name="employeeId" value="${employee.employeeId}" />
 			</portlet:actionURL>
-			
-			<portlet:resourceURL id="/download" var="downloadURL" >
-				<portlet:param name="employeeId" value="${employee.employeeId}"/>
+
+			<portlet:resourceURL id="/pdfdownload" var="downloadURL">
+				<portlet:param name="employeeId" value="${employee.employeeId}" />
 			</portlet:resourceURL>
 
 			<liferay-ui:search-container-column-text name="Employee ID"
@@ -70,40 +70,46 @@
 
 			<liferay-ui:search-container-column-text name="Actions">
 				<div class="icon-container">
-					<button class="btn pl-1 pr-1" type="button">
-						<a href="${updateEmployeeRenderURL}">
-							<i class="bi bi-pencil text-info"></i>
-						</a>
-					</button>
+					<!-- Update Button -->
+					<a href="${updateEmployeeRenderURL}" class="btn pl-1 pr-1"> 
+						<i class="bi bi-pencil text-info"></i>
+					</a>
+					
+					<!-- DeleteButton -->
 					<button type="button" class="btn pl-1 pr-1" data-toggle="modal" 
-						data-target="#exampleModal">
+						data-target="#deleteModal${employee.employeeId}">
 						<i class="bi bi-trash text-info"></i>
 					</button>
-					<button type="button" class="btn pl-1 pr-1">
-						<a href="<%=downloadURL%>">
-							<i class="bi bi-arrow-down-circle text-info"></i>
-						</a>
-					</button>
+					
+					<!-- Download Button -->
+					<a href="<%=downloadURL%>" class="btn pl-1 pr-1"> 
+						<i class="bi bi-arrow-down-circle text-info"></i>
+					</a>
 				</div>
+				
+				
+				
 			</liferay-ui:search-container-column-text>
+			<div class="modal fade" id="deleteModal${employee.employeeId}" tabindex="-1" role="dialog"
+					aria-labelledby="deleteModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<p class="popupText">Are you sure, you want to delete this
+									employee ?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn noBtn" data-dismiss="modal">NO</button>
+								<a href="${deleteEmployeeActionURL}">
+									<button type="button" class="btn yesBtn">YES</button>
+								</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
 		</liferay-ui:search-container-row>
 		<liferay-ui:search-iterator markupView="lexicon" />
 	</liferay-ui:search-container>
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
-				<p class="popupText">Are you sure, you want to delete this
-					employee ?</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn noBtn" data-dismiss="modal">NO</button>
-				<a href="${deleteEmployeeActionURL}"><button type="button"
-						class="btn yesBtn">YES</button></a>
-			</div>
-		</div>
-	</div>
 </div>

@@ -24,13 +24,13 @@ import com.lowagie.text.pdf.PdfWriter;
 @Component(
 	property = { 
 		"javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
-		"mvc.command.name=/download" 
+		"mvc.command.name=/pdfdownload" 
 	}, service = MVCResourceCommand.class
 )
 
 public class PDFDownload implements MVCResourceCommand {
 
-	private static Log log = LogFactoryUtil.getLog(PDFDownload.class);
+	private static final Log log = LogFactoryUtil.getLog(PDFDownload.class);
 
 	@Reference
 	EmployeeDetailLocalService employeeDetailLocalService;
@@ -42,7 +42,7 @@ public class PDFDownload implements MVCResourceCommand {
 		long employeeId = ParamUtil.getLong(resourceRequest, EmployeeWebPortletKeys.EMPLOYEE_ID);
 
 		try {
-			EmployeeDetail employee = employeeDetailLocalService.getEmployeeDetail(employeeId);
+			EmployeeDetail employee = employeeDetailLocalService.fetchEmployeeDetail(employeeId);
 			StringBuilder reportContent = new StringBuilder();
 			reportContent.append("Employee Id : " + employee.getEmployeeId() + "\n");
 			reportContent.append("First Name : " + employee.getFirstName() + "\n");
@@ -76,11 +76,13 @@ public class PDFDownload implements MVCResourceCommand {
 
 			document.close();
 
-			String fileName = "User.pdf";
+			String fileName = "Employee_"+employeeId+".pdf";
 			String contentType = "application/pdf";
 			byte[] bytes = baos.toByteArray();
 
 			PortletResponseUtil.sendFile(resourceRequest, resourceResponse, fileName, bytes, contentType);
+			
+			log.info("PDF file generated successfully");
 
 		} catch (Exception e) {
 			log.error("Error retrieving or processing text data: " + e.getMessage(), e);

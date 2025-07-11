@@ -31,22 +31,26 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 public class EmployeeWebPortlet extends MVCPortlet {
 
-	private static Log log = LogFactoryUtil.getLog(EmployeeWebPortlet.class);
+	private static final Log log = LogFactoryUtil.getLog(EmployeeWebPortlet.class);
 	
 	@Reference
-	EmployeeDetailLocalService employeedetailLocalService;
+	EmployeeDetailLocalService employeeDetailLocalService;
 	
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
 		
-		log.info("Render method is started");
-		
-		List<EmployeeDetail> employees = employeedetailLocalService.getEmployeeDetails(-1, -1);
-		renderRequest.setAttribute("employeeList", employees);
-		
-		log.info("EmployeeList attribute is set");
-		
-		super.render(renderRequest, renderResponse);
+		try {
+			log.info("Render method is started");
+			
+			List<EmployeeDetail> employees = employeeDetailLocalService.getEmployeeDetails(-1, -1);
+			renderRequest.setAttribute("employeeList", employees);
+			
+			log.info("EmployeeList attribute is set");
+			
+			super.render(renderRequest, renderResponse);
+		}catch(Exception e) {
+			log.error("Error while fetching employee data : "+ e);
+		}
 	}
 }
