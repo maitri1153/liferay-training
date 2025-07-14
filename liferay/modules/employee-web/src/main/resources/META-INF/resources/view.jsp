@@ -10,7 +10,7 @@
 
 	<div class="addEmpDiv pt-2">
 		<p class="float-left employeeText">Employees</p>
-		<a href="<%=addEmployeeRenderURL%>" class="btn btn-default addEmpButton"> 
+		<a href="<%=addEmployeeRenderURL%>" class="btn btn-default addEmpButton ${isHrClass}"> 
 			ADD NEW EMPLOYEE 
 		</a>
 	</div>
@@ -70,16 +70,17 @@
 
 			<liferay-ui:search-container-column-text name="Actions">
 				<div class="icon-container">
+				
 					<!-- Update Button -->
-					<a href="${updateEmployeeRenderURL}" class="btn pl-1 pr-1"> 
+					<a href="${updateEmployeeRenderURL}" class="btn pl-1 pr-1 ${isHrClass}"> 
 						<i class="bi bi-pencil text-info"></i>
 					</a>
 					
 					<!-- DeleteButton -->
-					<button type="button" class="btn pl-1 pr-1" data-toggle="modal" 
-						data-target="#deleteModal${employee.employeeId}">
+					<a href="javascript:void(0);" class="btn pl-1 pr-1 ${isHrClass}" data-toggle="modal" 
+						data-target="#deleteModal"  onclick="deleteFunction('${deleteEmployeeActionURL}')">
 						<i class="bi bi-trash text-info"></i>
-					</button>
+					</a>
 					
 					<!-- Download Button -->
 					<a href="<%=downloadURL%>" class="btn pl-1 pr-1"> 
@@ -87,10 +88,10 @@
 					</a>
 				</div>
 				
-				
-				
 			</liferay-ui:search-container-column-text>
-			<div class="modal fade" id="deleteModal${employee.employeeId}" tabindex="-1" role="dialog"
+		</liferay-ui:search-container-row>
+		
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
 					aria-labelledby="deleteModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
@@ -100,16 +101,20 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn noBtn" data-dismiss="modal">NO</button>
-								<a href="${deleteEmployeeActionURL}">
-									<button type="button" class="btn yesBtn">YES</button>
-								</a>
+							<button type="button" class="btn yesBtn" id="confirmDeleteBtn" data-dismiss="modal">YES</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			
-			
-		</liferay-ui:search-container-row>
 		<liferay-ui:search-iterator markupView="lexicon" />
 	</liferay-ui:search-container>
 </div>
+
+<script>
+	function deleteFunction(url){
+		$('#confirmDeleteBtn').off('click').on('click', function() {
+			window.location.href= url;
+		});
+		$('#deleteModal').modal('show');
+}
+</script>

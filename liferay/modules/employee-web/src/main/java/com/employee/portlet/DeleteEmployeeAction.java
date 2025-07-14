@@ -20,8 +20,12 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
-@Component(property = { "javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
-		"mvc.command.name=/deleteEmployee", }, service = MVCActionCommand.class)
+@Component(
+	property = { 
+		"javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
+		"mvc.command.name=/deleteEmployee", 
+	}, service = MVCActionCommand.class
+)
 
 public class DeleteEmployeeAction extends BaseMVCActionCommand {
 

@@ -32,8 +32,12 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
-@Component(property = { "javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
-		"mvc.command.name=/addEmployee" }, service = MVCActionCommand.class)
+@Component(
+	property = { 
+		"javax.portlet.name =" + EmployeeWebPortletKeys.EMPLOYEEWEB,
+		"mvc.command.name=/addEmployee" 
+	}, service = MVCActionCommand.class
+)
 
 public class AddEmployeeAction extends BaseMVCActionCommand {
 
@@ -61,7 +65,8 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 	UserGroupRoleLocalService userGroupRoleLocalService;
 
 	@Override
-	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
+	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) 
+			throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
@@ -143,7 +148,6 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 
 			ServiceContext serviceContext = new ServiceContext();
 			serviceContext = ServiceContextFactory.getInstance(User.class.getName(), actionRequest);
-			;
 
 			long addressId = counterLocalService.increment(Address.class.getName());
 			long newEmployeeId = counterLocalService.increment(EmployeeDetail.class.getName());
@@ -189,7 +193,6 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 			employeedetailLocalService.addEmployeeDetail(employee);
 
 			log.info("Employee is added");
-
 		}
 	}
 }

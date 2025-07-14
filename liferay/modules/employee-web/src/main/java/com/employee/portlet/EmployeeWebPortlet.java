@@ -13,7 +13,12 @@ import com.employee.service.model.EmployeeDetail;
 import com.employee.service.service.EmployeeDetailLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.service.RoleLocalService;
+import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.WebKeys;
 
 @Component(
 	property = { 
@@ -36,12 +41,28 @@ public class EmployeeWebPortlet extends MVCPortlet {
 	@Reference
 	EmployeeDetailLocalService employeeDetailLocalService;
 	
+	@Reference
+	UserGroupRoleLocalService userGroupRoleLocalService;
+	
+	@Reference
+	RoleLocalService roleLocalService;
+	
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
-		
 		try {
+			
 			log.info("Render method is started");
+			
+			ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+			long userId = themeDisplay.getUserId();
+			long groupId = themeDisplay.getScopeGroupId();
+			long companyId = themeDisplay.getCompanyId();
+			Role hrRole = roleLocalService.getRole(companyId, "HR");
+			boolean isHr = userGroupRoleLocalService.hasUserGroupRole(userId, groupId, hrRole.getRoleId());
+			String isHrClass = (isHr)?"":"d-none";
+
+			renderRequest.setAttribute("isHrClass", isHrClass);
 			
 			List<EmployeeDetail> employees = employeeDetailLocalService.getEmployeeDetails(-1, -1);
 			renderRequest.setAttribute("employeeList", employees);
