@@ -58,11 +58,10 @@ public class EmployeeWebPortlet extends MVCPortlet {
 			long userId = themeDisplay.getUserId();
 			long groupId = themeDisplay.getScopeGroupId();
 			long companyId = themeDisplay.getCompanyId();
-			Role hrRole = roleLocalService.getRole(companyId, "HR");
+			Role hrRole = roleLocalService.getRole(companyId, EmployeeWebPortletKeys.HR);
 			boolean isHr = userGroupRoleLocalService.hasUserGroupRole(userId, groupId, hrRole.getRoleId());
-			String isHrClass = (isHr)?"":"d-none";
 
-			renderRequest.setAttribute("isHrClass", isHrClass);
+			renderRequest.setAttribute("isHr", isHr);
 			
 			List<EmployeeDetail> employees = employeeDetailLocalService.getEmployeeDetails(-1, -1);
 			renderRequest.setAttribute("employeeList", employees);

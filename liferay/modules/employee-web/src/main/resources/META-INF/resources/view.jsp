@@ -10,9 +10,11 @@
 
 	<div class="addEmpDiv pt-2">
 		<p class="float-left employeeText">Employees</p>
-		<a href="<%=addEmployeeRenderURL%>" class="btn btn-default addEmpButton ${isHrClass}"> 
-			ADD NEW EMPLOYEE 
-		</a>
+		<c:if test="${isHr}">
+			<a href="<%=addEmployeeRenderURL%>" class="btn btn-default addEmpButton"> 
+				ADD NEW EMPLOYEE 
+			</a>
+		</c:if>
 	</div>
 
 	<liferay-ui:search-container total="<%=employees.size()%>"
@@ -65,22 +67,24 @@
 				property="email" value="${employee.email}" />
 
 			<liferay-ui:search-container-column-text name="City" property="city"
-				value="${employee.city }" />
+				value="${employee.city}" />
 
 
 			<liferay-ui:search-container-column-text name="Actions">
 				<div class="icon-container">
 				
+				<c:if test="${isHr}">
 					<!-- Update Button -->
-					<a href="${updateEmployeeRenderURL}" class="btn pl-1 pr-1 ${isHrClass}"> 
+					<a href="${updateEmployeeRenderURL}" class="btn pl-1 pr-1"> 
 						<i class="bi bi-pencil text-info"></i>
 					</a>
 					
 					<!-- DeleteButton -->
-					<a href="javascript:void(0);" class="btn pl-1 pr-1 ${isHrClass}" data-toggle="modal" 
+					<a href="javascript:void(0);" class="btn pl-1 pr-1" data-toggle="modal" 
 						data-target="#deleteModal"  onclick="deleteFunction('${deleteEmployeeActionURL}')">
 						<i class="bi bi-trash text-info"></i>
 					</a>
+				</c:if>
 					
 					<!-- Download Button -->
 					<a href="<%=downloadURL%>" class="btn pl-1 pr-1"> 

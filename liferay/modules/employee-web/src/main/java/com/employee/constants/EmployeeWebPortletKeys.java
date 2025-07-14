@@ -20,6 +20,8 @@ public class EmployeeWebPortletKeys {
 	
 	public static final String FIRSTNAME  = "firstName";
 	
+	public static final String HR = "HR";
+	
 	public static final String LASTNAME ="lastName";
 	
 	public static final String PHONE_NUMBER = "phoneNumber";
