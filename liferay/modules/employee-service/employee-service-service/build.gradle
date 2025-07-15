@@ -1,7 +1,10 @@
 dependencies {
 	api project(":modules:employee-service:employee-service-api")
-
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.4.0"
 	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi"
+    compileOnly group: "com.liferay", name: "com.liferay.portal.search.api"
+    compileOnly project(":modules:employee-service:employee-service-api")
 }
 
 buildService {
