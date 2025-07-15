@@ -46,7 +46,7 @@
 					<aui:input name="email" placeholder="Enter your email"
 						label="Email" value="${employee.email}">
 						<aui:validator name="required" />
-						<aui:validator name="email" />
+						<aui:validator name="email"/>
 					</aui:input>
 				</div>
 

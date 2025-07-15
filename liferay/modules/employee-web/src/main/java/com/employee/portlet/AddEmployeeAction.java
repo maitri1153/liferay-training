@@ -1,5 +1,6 @@
 package com.employee.portlet;
 
+import java.util.List;
 import java.util.Locale;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -90,36 +91,54 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 		if (employeeId > 0) {
 
 			log.info("Update Employee action method is started");
-			EmployeeDetail employee = employeedetailLocalService.getEmployeeDetail(employeeId);
+			EmployeeDetail employee = employeedetailLocalService.fetchEmployeeDetail(employeeId);
 			String userEmail = employee.getEmail();
+			log.info(employee);
+			log.info(userEmail);
+			User user = userLocalService.fetchUserByEmailAddress(companyId, userEmail);
+			log.info(user);
+			
+			try {
+				if (Validator.isNotNull(employee)) {
+					employee.setFirstName(firstName);
+					employee.setLastName(lastName);
+					employee.setEmail(email);
+					employee.setPhoneNumber(phoneNumber);
+					employee.setAddressLine1(addressLine1);
+					employee.setAddressLine2(addressLine2);
+					employee.setCity(city);
+					employee.setZipCode(zipCode);
+					employee.setDesignation(designation);
+					employeedetailLocalService.updateEmployeeDetail(employee);
 
-			User user = userLocalService.getUserByEmailAddress(companyId, userEmail);
+					log.info("Employee Detail is updated");
+				 } 
 
-			if (Validator.isNotNull(employee)) {
-				employee.setFirstName(firstName);
-				employee.setLastName(lastName);
-				employee.setEmail(email);
-				employee.setPhoneNumber(phoneNumber);
-				employee.setAddressLine1(addressLine1);
-				employee.setAddressLine2(addressLine2);
-				employee.setCity(city);
-				employee.setZipCode(zipCode);
-				employee.setDesignation(designation);
-				employeedetailLocalService.updateEmployeeDetail(employee);
-
-				log.info("Employee Detail is updated");
+				if (Validator.isNotNull(user)) {
+					user.setFirstName(firstName);
+					user.setLastName(lastName);
+					user.setEmailAddress(email);
+					user.setJobTitle(designation);
+					userLocalService.updateUser(user);
+					
+					log.info("User information is updated");
+					
+					long classPk = user.getContactId();
+					String className = Contact.class.getName();
+					List<Address> addresses = addressLocalService.getAddresses(companyId, className, classPk);
+					Address address = addresses.get(0);
+					address.setCity(city);
+					address.setStreet1(addressLine1);
+					address.setStreet2(addressLine2);
+					String zip = String.valueOf(zipCode);
+					address.setZip(zip);
+					addressLocalService.updateAddress(address);
+					log.info("Address is updated");
+				 } 
+			}catch(Exception e) {
+				log.error(e);
 			}
-
-			if (Validator.isNotNull(user)) {
-				user.setFirstName(firstName);
-				user.setLastName(lastName);
-				user.setEmailAddress(email);
-				user.setJobTitle(designation);
-				userLocalService.updateUser(user);
-
-				log.info("User information is updated");
-			}
-
+			
 		} else {
 			log.info("Add Employee action method is started");
 
@@ -148,7 +167,7 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 
 			ServiceContext serviceContext = new ServiceContext();
 			serviceContext = ServiceContextFactory.getInstance(User.class.getName(), actionRequest);
-
+			
 			long addressId = counterLocalService.increment(Address.class.getName());
 			long newEmployeeId = counterLocalService.increment(EmployeeDetail.class.getName());
 

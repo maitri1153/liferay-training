@@ -10,9 +10,11 @@ import com.employee.service.service.EmployeeDetailLocalService;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.service.AddressLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -31,6 +33,9 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 
 	private static final Log log = LogFactoryUtil.getLog(DeleteEmployeeAction.class);
 
+	@Reference
+	AddressLocalService addressLocalService;
+	
 	@Reference
 	CounterLocalService counterLocalService;
 
@@ -55,11 +60,18 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 			if (Validator.isNotNull(employeeId)) {
 				EmployeeDetail employee = employeedetailLocalService.fetchEmployeeDetail(employeeId);
 				String userEmail = employee.getEmail();
+				
 				employeedetailLocalService.deleteEmployeeDetail(employeeId);
 				log.info("Employee data is deleted");
 
 				User user = userLocalService.getUserByEmailAddress(companyId, userEmail);
 				long userId = user.getUserId();
+				
+				long classPk = user.getContactId();
+				String className = Contact.class.getName();
+				addressLocalService.deleteAddresses(companyId, className, classPk);
+				log.info("Address is deleted");
+				
 				userLocalService.deleteUser(userId);
 				log.info("User data is deleted");
 				
