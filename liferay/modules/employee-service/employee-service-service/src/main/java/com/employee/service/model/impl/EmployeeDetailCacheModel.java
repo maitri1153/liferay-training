@@ -5,18 +5,16 @@
 
 package com.employee.service.model.impl;
 
-import com.employee.service.model.EmployeeDetail;
-
-import com.liferay.petra.lang.HashUtil;
-import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.model.CacheModel;
-
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-
 import java.util.Date;
+
+import com.employee.service.model.EmployeeDetail;
+import com.liferay.petra.lang.HashUtil;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.model.CacheModel;
 
 /**
  * The cache model class for representing EmployeeDetail in entity cache.

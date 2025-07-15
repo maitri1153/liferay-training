@@ -1,6 +1,7 @@
 package com.employee.portlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
@@ -11,13 +12,25 @@ import org.osgi.service.component.annotations.Reference;
 import com.employee.constants.EmployeeWebPortletKeys;
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.service.EmployeeDetailLocalService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchContextFactory;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 @Component(
@@ -60,15 +73,37 @@ public class EmployeeWebPortlet extends MVCPortlet {
 			long companyId = themeDisplay.getCompanyId();
 			Role hrRole = roleLocalService.getRole(companyId, EmployeeWebPortletKeys.HR);
 			boolean isHr = userGroupRoleLocalService.hasUserGroupRole(userId, groupId, hrRole.getRoleId());
-
 			renderRequest.setAttribute("isHr", isHr);
-			
-			List<EmployeeDetail> employees = employeeDetailLocalService.getEmployeeDetails(-1, -1);
-			renderRequest.setAttribute("employeeList", employees);
-			
+	        
+			SearchContext searchContext = SearchContextFactory.getInstance(PortalUtil.getHttpServletRequest(renderRequest));
+			searchContext.setCompanyId(companyId);
+			searchContext.setAttribute("head", true);
+		
+			Indexer<EmployeeDetail> indexer = IndexerRegistryUtil.getIndexer(EmployeeDetail.class);
+			try {
+				Hits hits = indexer.search(searchContext);		
+				List<EmployeeDetail> employees = new ArrayList<>();
+				if (hits != null && hits.getDocs() != null) {
+				    for (Document doc : hits.getDocs()) {
+				        try {
+				            long employeeId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
+				            EmployeeDetail employee = employeeDetailLocalService.getEmployeeDetail(employeeId);
+				            employees.add(employee);
+				        } catch (PortalException | SystemException e) {
+				            log.info("Error while converting to employeeList from hits");
+				        }
+				    }
+				}
+				log.info(hits);
+				renderRequest.setAttribute("employeeList", employees);
+			} catch (SearchException e) {
+				e.printStackTrace();
+			}
+
 			log.info("EmployeeList attribute is set");
 			
 			super.render(renderRequest, renderResponse);
+			
 		}catch(Exception e) {
 			log.error("Error while fetching employee data : "+ e);
 		}

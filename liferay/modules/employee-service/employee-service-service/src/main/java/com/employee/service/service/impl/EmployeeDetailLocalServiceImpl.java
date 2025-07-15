@@ -5,11 +5,10 @@
 
 package com.employee.service.service.impl;
 
-import com.employee.service.service.base.EmployeeDetailLocalServiceBaseImpl;
-
-import com.liferay.portal.aop.AopService;
-
 import org.osgi.service.component.annotations.Component;
+
+import com.employee.service.service.base.EmployeeDetailLocalServiceBaseImpl;
+import com.liferay.portal.aop.AopService;
 
 /**
  * @author Brian Wing Shun Chan

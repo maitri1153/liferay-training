@@ -5,18 +5,17 @@
 
 package com.employee.service.service.persistence.impl;
 
-import com.employee.service.model.EmployeeDetailTable;
-import com.employee.service.model.impl.EmployeeDetailImpl;
-import com.employee.service.model.impl.EmployeeDetailModelImpl;
-
-import com.liferay.portal.kernel.dao.orm.ArgumentsResolver;
-import com.liferay.portal.kernel.dao.orm.FinderPath;
-import com.liferay.portal.kernel.model.BaseModel;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.service.component.annotations.Component;
+
+import com.employee.service.model.EmployeeDetailTable;
+import com.employee.service.model.impl.EmployeeDetailImpl;
+import com.employee.service.model.impl.EmployeeDetailModelImpl;
+import com.liferay.portal.kernel.dao.orm.ArgumentsResolver;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
+import com.liferay.portal.kernel.model.BaseModel;
 
 /**
  * The arguments resolver class for retrieving value from EmployeeDetail.

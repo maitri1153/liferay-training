@@ -5,9 +5,21 @@
 
 package com.employee.service.model.impl;
 
+import java.io.Serializable;
+import java.lang.reflect.InvocationHandler;
+import java.sql.Blob;
+import java.sql.Types;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.model.EmployeeDetailModel;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
@@ -24,22 +36,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-
-import java.io.Serializable;
-
-import java.lang.reflect.InvocationHandler;
-
-import java.sql.Blob;
-import java.sql.Types;
-
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 /**
  * The base model implementation for the EmployeeDetail service. Represents a row in the &quot;IgnekIntranet_EmployeeDetail&quot; database table, with each column mapped to a property of this class.
