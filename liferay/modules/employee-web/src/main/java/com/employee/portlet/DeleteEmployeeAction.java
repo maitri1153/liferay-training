@@ -66,17 +66,14 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 
 				User user = userLocalService.getUserByEmailAddress(companyId, userEmail);
 				long userId = user.getUserId();
-				
 				long classPk = user.getContactId();
 				String className = Contact.class.getName();
+				
 				addressLocalService.deleteAddresses(companyId, className, classPk);
 				log.info("Address is deleted");
 				
 				userLocalService.deleteUser(userId);
 				log.info("User data is deleted");
-				
-				String url = themeDisplay.getURLPortal() + themeDisplay.getURLCurrent();
-				actionResponse.sendRedirect(url);
 				
 			} else {
 				log.error("Employee Id fetched as null");
