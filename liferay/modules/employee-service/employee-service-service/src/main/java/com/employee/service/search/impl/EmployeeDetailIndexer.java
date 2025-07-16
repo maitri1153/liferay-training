@@ -1,5 +1,6 @@
 package com.employee.service.search.impl;
 
+import java.util.List;
 import java.util.Locale;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -13,7 +14,7 @@ import com.liferay.portal.kernel.search.IndexWriterHelperUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
-
+import com.liferay.portal.kernel.util.GetterUtil;
 
 @Component(
 	immediate=true,
@@ -27,7 +28,7 @@ public class EmployeeDetailIndexer extends BaseIndexer<EmployeeDetail> {
 	public EmployeeDetailIndexer() {
 		setDefaultSelectedFieldNames(
 				Field.COMPANY_ID, Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK,
-				Field.GROUP_ID, Field.MODIFIED_DATE);
+				Field.MODIFIED_DATE, Field.CREATE_DATE , Field.USER_NAME, Field.USER_ID, Field.GROUP_ID);
 			setPermissionAware(true);
 			setFilterSearch(true);
 		setPermissionAware(true);
@@ -59,9 +60,16 @@ public class EmployeeDetailIndexer extends BaseIndexer<EmployeeDetail> {
 
 	@Override
 	protected void doReindex(String[] ids) throws Exception {
-		reindex(ids);
+		long companyId = GetterUtil.getLong(ids[0]);
+		reindexEntries(companyId);
 	}
 
+	@Override
+	protected void doReindex(EmployeeDetail employee) throws Exception {
+		Document document = getDocument(employee);
+		IndexWriterHelperUtil.updateDocument(employee.getCompanyId(), document);
+	}
+	
 	@Override
 	protected void doDelete(EmployeeDetail employee) throws Exception {
 		deleteDocument(employee.getCompanyId(), employee.getEmployeeId());
@@ -84,11 +92,13 @@ public class EmployeeDetailIndexer extends BaseIndexer<EmployeeDetail> {
 		document.addNumber("zipCode", employee.getZipCode());
 		return document;
 	}
-
-	@Override
-	protected void doReindex(EmployeeDetail employee) throws Exception {
-		Document document = getDocument(employee);
-		IndexWriterHelperUtil.updateDocument(employee.getCompanyId(), document);
+	
+	protected void reindexEntries(long companyId) throws Exception {
+		List<EmployeeDetail> employees = EmployeeDetailLocalServiceUtil.getEmployeeDetails(-1, -1);
+		for (EmployeeDetail employee : employees) {
+			Document document = getDocument(employee);
+			IndexWriterHelperUtil.updateDocument(companyId, document);
+		}
 	}
 
 	@Override
