@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.search.query.Queries;
 
 @Component(
 	property = { 
@@ -50,6 +51,9 @@ import com.liferay.portal.kernel.util.WebKeys;
 public class EmployeeWebPortlet extends MVCPortlet {
 
 	private static final Log log = LogFactoryUtil.getLog(EmployeeWebPortlet.class);
+	
+	@Reference
+	protected Queries queries;
 	
 	@Reference
 	EmployeeDetailLocalService employeeDetailLocalService;
@@ -74,10 +78,10 @@ public class EmployeeWebPortlet extends MVCPortlet {
 			Role hrRole = roleLocalService.getRole(companyId, EmployeeWebPortletKeys.HR);
 			boolean isHr = userGroupRoleLocalService.hasUserGroupRole(userId, groupId, hrRole.getRoleId());
 			renderRequest.setAttribute("isHr", isHr);
-	        
+			
 			SearchContext searchContext = SearchContextFactory.getInstance(PortalUtil.getHttpServletRequest(renderRequest));
-			searchContext.setCompanyId(companyId);
 			searchContext.setAttribute("head", true);
+			searchContext.setCompanyId(companyId);
 		
 			Indexer<EmployeeDetail> indexer = IndexerRegistryUtil.getIndexer(EmployeeDetail.class);
 			try {

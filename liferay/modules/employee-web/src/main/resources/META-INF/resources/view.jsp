@@ -40,7 +40,6 @@
 				<portlet:param name="zipCode" value="${employee.zipCode}" />
 				<portlet:param name="designation" value="${employee.designation}" />
 				<portlet:param name="employeeId" value="${employee.employeeId}" />
-				
 			</portlet:renderURL>
 
 			<portlet:actionURL name="/deleteEmployee" var="deleteEmployeeActionURL">
