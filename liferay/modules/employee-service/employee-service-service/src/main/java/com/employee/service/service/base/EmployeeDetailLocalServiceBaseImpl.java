@@ -147,7 +147,6 @@ public abstract class EmployeeDetailLocalServiceBaseImpl
 		return count.intValue();
 	}
 
-	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 

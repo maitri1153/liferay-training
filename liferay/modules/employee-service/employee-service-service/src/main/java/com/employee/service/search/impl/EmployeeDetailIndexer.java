@@ -31,7 +31,6 @@ public class EmployeeDetailIndexer extends BaseIndexer<EmployeeDetail> {
 				Field.MODIFIED_DATE, Field.CREATE_DATE , Field.USER_NAME, Field.USER_ID, Field.GROUP_ID);
 			setPermissionAware(true);
 			setFilterSearch(true);
-		setPermissionAware(true);
 	}
 
 	@Override
@@ -63,7 +62,7 @@ public class EmployeeDetailIndexer extends BaseIndexer<EmployeeDetail> {
 		long companyId = GetterUtil.getLong(ids[0]);
 		reindexEntries(companyId);
 	}
-
+	
 	@Override
 	protected void doReindex(EmployeeDetail employee) throws Exception {
 		Document document = getDocument(employee);

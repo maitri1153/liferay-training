@@ -1,17 +1,10 @@
 package com.employee.rest.internal.resource.v1_0;
 
-import com.employee.rest.resource.v1_0.EmployeeDetailObjectResource;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
-
-/**
- * @author ignek
- */
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/employee-detail-object.properties",
-	scope = ServiceScope.PROTOTYPE, service = EmployeeDetailObjectResource.class
+	scope = ServiceScope.PROTOTYPE
 )
-public class EmployeeDetailObjectResourceImpl
-	extends BaseEmployeeDetailObjectResourceImpl {
+public class EmployeeDetailObjectResourceImpl {
 }

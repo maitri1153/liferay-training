@@ -126,7 +126,8 @@ public class EmployeeDetailLocalServiceUtil {
 	}
 
 	public static DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+		getService();
+		return EmployeeDetailLocalService.dynamicQuery();
 	}
 
 	/**

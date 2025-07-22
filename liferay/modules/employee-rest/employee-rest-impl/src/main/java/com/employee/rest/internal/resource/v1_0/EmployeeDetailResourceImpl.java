@@ -138,7 +138,6 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 		return Page.of(employeeObject);
 	}
 	
-	
 	private EmployeeDetailObject getEmployeeDetailFromModel(EmployeeDetail employee) {
 		EmployeeDetailObject employeeObject = new EmployeeDetailObject();
 		employeeObject.setDesignation(employee.getDesignation());

@@ -2,7 +2,6 @@ package com.employee.rest.internal.resource.v1_0;
 
 import com.employee.rest.dto.v1_0.EmployeeDetailObject;
 import com.employee.rest.resource.v1_0.EmployeeDetailResource;
-
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.GroupedModel;
@@ -19,16 +18,12 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.ActionUtil;
 import com.liferay.petra.function.transform.TransformUtil;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Generated;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.ws.rs.core.UriInfo;
 
 /**
