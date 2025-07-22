@@ -25,7 +25,10 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
-@Component(immediate = true, service = ModelListener.class)
+@Component(
+	immediate = true, 
+	service = ModelListener.class
+)
 
 public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 
@@ -88,7 +91,7 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 
 			if (objectDefinition != null) {
 				ServiceContext serviceContext = new ServiceContext();
-				Map<String, Serializable> values = setValues(ipAddress,EmployeeConstant.Delete,model);
+				Map<String, Serializable> values = setValues(ipAddress,EmployeeConstant.DELETE,model);
 				
 				ObjectEntry objectEntry = objectEntryLocalService
 					.addObjectEntry(model.getUserId(), model.getGroupId(),objectDefinition.getObjectDefinitionId()
@@ -132,11 +135,11 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 	}
 
 	public String getObjectDefinationName() {
-		Locale locale = LocaleUtil.fromLanguageId("Activity");
+		Locale locale = LocaleUtil.fromLanguageId(EmployeeConstant.ACTIVITY);
 		String objectDefinitionName = null;
 		List<ObjectDefinition> objectDefinitions = objectDefinitionLocalService.getObjectDefinitions(-1, -1);
 		for (ObjectDefinition objectDefinition : objectDefinitions) {
-			if (objectDefinition.getLabel(locale).equals("Activity")) {
+			if (objectDefinition.getLabel(locale).equals(EmployeeConstant.ACTIVITY)) {
 				objectDefinitionName = objectDefinition.getClassName();
 			}
 		}
@@ -147,9 +150,9 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 	public Map<String, Serializable> setValues(String ipAddress,String type,EmployeeDetail model) {
 		log.info("Setting values for activity" + ipAddress + type + model);
 		Map<String, Serializable> values = new HashMap<>();
-		values.put("activityType",type);
-		values.put("details", model.getFirstName() + model.getEmail());
-		values.put("iPAddress", ipAddress);
+		values.put(EmployeeConstant.ACTIVITY_TYPE,type);
+		values.put(EmployeeConstant.DETAILS, model.getFirstName() + model.getEmail());
+		values.put(EmployeeConstant.IP_ADDRESS, ipAddress);
 		log.info(values);
 		return values;
 	}

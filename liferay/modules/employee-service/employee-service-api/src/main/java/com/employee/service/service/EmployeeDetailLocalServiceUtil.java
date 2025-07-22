@@ -125,9 +125,10 @@ public class EmployeeDetailLocalServiceUtil {
 		return getService().dslQueryCount(dslQuery);
 	}
 
-	public static DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
-	}
+	/*
+	 * public static DynamicQuery dynamicQuery() { return
+	 * getService().dynamicQuery(); }
+	 */
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.

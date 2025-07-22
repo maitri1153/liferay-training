@@ -129,9 +129,8 @@ public class EmployeeDetailLocalServiceWrapper
 		return _employeeDetailLocalService.dslQueryCount(dslQuery);
 	}
 
-	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _employeeDetailLocalService.dynamicQuery();
+		return EmployeeDetailLocalService.dynamicQuery();
 	}
 
 	/**
