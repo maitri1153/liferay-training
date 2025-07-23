@@ -27,8 +27,8 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 @Component(
-		immediate = true, 
-		service = ModelListener.class
+	immediate = true, 
+	service = ModelListener.class
 )
 
 public class EmployeeModelListener extends BaseModelListener<EmployeeDetail>{
