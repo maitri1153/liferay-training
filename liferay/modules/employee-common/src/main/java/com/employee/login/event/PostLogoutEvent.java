@@ -34,7 +34,7 @@ import src.main.java.com.employee.login.event.UserLogin;
 
 public class PostLogoutEvent implements LifecycleAction {
 	
-	private static final Log log = LogFactoryUtil.getLog(UserLogin.class);
+	private static final Log log = LogFactoryUtil.getLog(PostLogoutEvent.class);
 
 	@Reference
 	private ObjectEntryLocalService objectEntryLocalService;

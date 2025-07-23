@@ -33,7 +33,7 @@ import com.user.constat.EventConstant;
 
 public class PostLoginEvent implements LifecycleAction {
 	
-	private static final Log log = LogFactoryUtil.getLog(UserLogin.class);
+	private static final Log log = LogFactoryUtil.getLog(PostLoginEvent.class);
 
 	@Reference
 	private ObjectEntryLocalService objectEntryLocalService;
