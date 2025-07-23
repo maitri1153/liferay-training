@@ -13,6 +13,5 @@ public class EventConstant {
 	public static final String LOGIN = "login";
 	
 	public static final String Logout = "logout";
-
 	
 }
