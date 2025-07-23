@@ -79,7 +79,7 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 				}
 			}
 
-			log.info("objectDefinition object is fetched");
+			log.info("ObjectDefinition object is fetched");
 			
 			if (Validator.isNotNull(objectDefinition)) {
 				
