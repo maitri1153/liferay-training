@@ -2,7 +2,7 @@ package com.employee.constant;
 
 public class EmployeeConstant {
 	
-	public static final String ACTIVITY = "Activity";
+	public static final String ACTIVITY = "C_ACTIVITY";
 
 	public static final String ACTIVITY_TYPE = "activityType";
 	

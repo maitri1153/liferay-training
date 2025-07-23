@@ -70,14 +70,9 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 			Set<String> IPAddresses = PortalUtil.getComputerAddresses();
 			String ipAddress = IPAddresses.toString();
 
-			Locale locale = LocaleUtil.fromLanguageId(EmployeeConstant.ACTIVITY);
-			ObjectDefinition objectDefinition = null;
-			List<ObjectDefinition> objectDefinitions = ObjectDefinitionLocalService.getObjectDefinitions(-1, -1);
-			for (ObjectDefinition object : objectDefinitions) {
-				if (object.getLabel(locale).equals(EmployeeConstant.ACTIVITY)) {
-					objectDefinition = object;
-				}
-			}
+			ObjectDefinition objectDefinition =
+				    ObjectDefinitionLocalService.fetchObjectDefinitionByExternalReferenceCode(
+				        EmployeeConstant.ACTIVITY, employeeDetailModel.getcompanyId());
 
 			log.info("ObjectDefinition object is fetched");
 			
