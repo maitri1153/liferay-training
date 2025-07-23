@@ -1,4 +1,0 @@
-Bundle-Name: employee-model
-Bundle-SymbolicName: com.employee.model
-Bundle-Version: 1.0.0
-Export-Package: com.employee.model.api
