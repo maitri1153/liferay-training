@@ -82,7 +82,7 @@ public class EmployeeWebPortlet extends MVCPortlet {
 			SearchContext searchContext = SearchContextFactory.getInstance(PortalUtil.getHttpServletRequest(renderRequest));
 			searchContext.setAttribute("head", true);
 			searchContext.setCompanyId(companyId);
-		
+			
 			Indexer<EmployeeDetail> indexer = IndexerRegistryUtil.getIndexer(EmployeeDetail.class);
 			try {
 				Hits hits = indexer.search(searchContext);		
