@@ -31,9 +31,9 @@ import com.liferay.portal.kernel.util.Validator;
 	service = ModelListener.class
 )
 
-public class EmployeeModelListener extends BaseModelListener<EmployeeDetail>{
+public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 
-	private static Log log = LogFactoryUtil.getLog(EmployeeModelListener.class);
+	private static final Log log = LogFactoryUtil.getLog(EmployeeModelListener.class);
 
 	@Reference
 	private ObjectEntryLocalService objectEntryLocalService;
@@ -45,27 +45,27 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail>{
 	UserLocalService userLocalService;
 	
 	@Override
-	public void onAfterUpdate(EmployeeDetail originalModel, EmployeeDetail EmployeeDetailModel) throws ModelListenerException {
-		log.info("Started modelListener after Update");
-		handleActivityLogging(EmployeeDetailModel,EmployeeConstant.UPDATE);
-		super.onAfterUpdate(originalModel, EmployeeDetailModel);
+	public void onAfterUpdate(EmployeeDetail originalModel, EmployeeDetail employeeDetailModel) throws ModelListenerException {
+		log.info("After Update method is started");
+		handleActivityLogging(employeeDetailModel,EmployeeConstant.UPDATE);
+		super.onAfterUpdate(originalModel, employeeDetailModel);
 	}
 	
 	@Override
-	public void onAfterRemove(EmployeeDetail EmployeeDetailModel) throws ModelListenerException {
-		log.info("Started modelListener after delete");
-		handleActivityLogging(EmployeeDetailModel,EmployeeConstant.DELETE);
-		super.onAfterRemove(EmployeeDetailModel);
+	public void onAfterRemove(EmployeeDetail employeeDetailModel) throws ModelListenerException {
+		log.info("After delete method is started");
+		handleActivityLogging(employeeDetailModel,EmployeeConstant.DELETE);
+		super.onAfterRemove(employeeDetailModel);
 	}
 	
 	@Override
-	public void onAfterCreate(EmployeeDetail EmployeeDetailModel) throws ModelListenerException {
-		log.info("Started modelListener after insert");
-		handleActivityLogging(EmployeeDetailModel,EmployeeConstant.INSERT);
-		super.onAfterCreate(EmployeeDetailModel);
+	public void onAfterCreate(EmployeeDetail employeeDetailModel) throws ModelListenerException {
+		log.info("After insert method is started");
+		handleActivityLogging(employeeDetailModel,EmployeeConstant.INSERT);
+		super.onAfterCreate(employeeDetailModel);
 	}
 	
-	public void handleActivityLogging(EmployeeDetail EmployeeDetailModel, String Type) {
+	public void handleActivityLogging(EmployeeDetail employeeDetailModel, String Type) {
 		try {
 			Set<String> IPAddresses = PortalUtil.getComputerAddresses();
 			String ipAddress = IPAddresses.toString();
@@ -87,12 +87,12 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail>{
 				
 				Map<String, Serializable> values = new HashMap<>();
 				values.put(EmployeeConstant.ACTIVITY_TYPE, Type);
-				values.put(EmployeeConstant.DETAILS,EmployeeDetailModel.getEmail());
+				values.put(EmployeeConstant.DETAILS,employeeDetailModel.getEmail());
 				values.put(EmployeeConstant.IP_ADDRESS, ipAddress);
 				log.info("Activity values are set");
 				
-				ObjectEntry objectEntry = objectEntryLocalService.addObjectEntry(EmployeeDetailModel.getUserId(),
-						EmployeeDetailModel.getGroupId(), objectDefinition.getObjectDefinitionId(), values,
+				ObjectEntry objectEntry = objectEntryLocalService.addObjectEntry(employeeDetailModel.getUserId(),
+						employeeDetailModel.getGroupId(), objectDefinition.getObjectDefinitionId(), values,
 						serviceContext);
 				
 				log.info("Object entry created with ID: " + objectEntry.getObjectEntryId());
