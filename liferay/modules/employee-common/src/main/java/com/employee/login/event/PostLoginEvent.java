@@ -41,6 +41,9 @@ public class PostLoginEvent implements LifecycleAction {
 	@Reference
 	ObjectDefinitionLocalService objectDefinitionLocalService;
 	
+	@Reference 
+	UserGroupRoleLocalService userGroupRoleLocalService;
+	
 	@Override
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) throws ActionException {
 		try {
@@ -51,6 +54,10 @@ public class PostLoginEvent implements LifecycleAction {
 			
 			HttpServletRequest request = lifecycleEvent.getRequest();
 			long companyId = PortalUtil.getUser(request).getCompanyId();
+			
+			List<UserGroupRole> users = userGroupRoleLocalService.getUserGroupRoles(PortalUtil.getUser(request).getUserId());
+			UserGroupRole user = users.getFirst();
+			long groupId = user.getGroupId();
 			
 			ObjectDefinition objectDefinition =
 				    objectDefinitionLocalService.fetchObjectDefinitionByExternalReferenceCode(
@@ -65,7 +72,7 @@ public class PostLoginEvent implements LifecycleAction {
 				log.info("Values are set for activity");
 				
 				ObjectEntry objectEntry = objectEntryLocalService
-					.addObjectEntry(PortalUtil.getUser(request).getUserId() ,39407,
+					.addObjectEntry(PortalUtil.getUser(request).getUserId() ,groupId,
 						objectDefinition.getObjectDefinitionId(), values ,serviceContext);
 				
 				log.info("Object entry created with ID: " + objectEntry.getObjectEntryId());
