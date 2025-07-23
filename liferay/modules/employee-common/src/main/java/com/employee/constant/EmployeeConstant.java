@@ -16,4 +16,5 @@ public class EmployeeConstant {
 	
 	public static final String UPDATE = "UPDATE";
 
+	public static final String LOGIN ="LOGIN";
 }

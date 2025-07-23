@@ -3,11 +3,12 @@ package com.employee.model.listener;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
 import com.employee.constant.EmployeeConstant;
 import com.employee.service.model.EmployeeDetail;
 import com.liferay.object.model.ObjectDefinition;
@@ -20,9 +21,11 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -43,6 +46,9 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 	
 	@Reference
 	UserLocalService userLocalService;
+	
+	@Reference
+	UserGroupRoleLocalService user;
 	
 	@Override
 	public void onAfterUpdate(EmployeeDetail originalModel, EmployeeDetail employeeDetailModel) throws ModelListenerException {
@@ -72,10 +78,10 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 
 			ObjectDefinition objectDefinition =
 				    ObjectDefinitionLocalService.fetchObjectDefinitionByExternalReferenceCode(
-				        EmployeeConstant.ACTIVITY, employeeDetailModel.getcompanyId());
+				        EmployeeConstant.ACTIVITY, employeeDetailModel.getCompanyId());
 
 			log.info("ObjectDefinition object is fetched");
-			
+
 			if (Validator.isNotNull(objectDefinition)) {
 				
 				ServiceContext serviceContext = new ServiceContext();
@@ -85,7 +91,7 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 				values.put(EmployeeConstant.DETAILS,employeeDetailModel.getEmail());
 				values.put(EmployeeConstant.IP_ADDRESS, ipAddress);
 				log.info("Activity values are set");
-				
+			
 				ObjectEntry objectEntry = objectEntryLocalService.addObjectEntry(employeeDetailModel.getUserId(),
 						employeeDetailModel.getGroupId(), objectDefinition.getObjectDefinitionId(), values,
 						serviceContext);
