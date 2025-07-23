@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 @Component(
 	immediate = true, 
@@ -33,128 +34,70 @@ import com.liferay.portal.kernel.util.PortalUtil;
 public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 
 	private static Log log = LogFactoryUtil.getLog(EmployeeModelListener.class);
-	
-	@Reference
-	ObjectDefinitionLocalService ObjectDefinitionLocalService;
 
 	@Reference
 	private ObjectEntryLocalService objectEntryLocalService;
 
 	@Reference
-	private ObjectDefinitionLocalService objectDefinitionLocalService;
-
+	ObjectDefinitionLocalService ObjectDefinitionLocalService;
+	
 	@Reference
 	UserLocalService userLocalService;
 
 	@Override
-	public void onAfterUpdate(EmployeeDetail originalModel, EmployeeDetail model) 
+	public void onAfterUpdate(EmployeeDetail originalModel, EmployeeDetail EmployeeDetailModel)
 			throws ModelListenerException {
-		try {
-			log.info("Started modelListener");
-			
-			Set<String> IPAddresses =  PortalUtil.getComputerAddresses();
-			String ipAddress = IPAddresses.toString();
-			
-			String objectDefinitionName = getObjectDefinationName();
-			
-			ObjectDefinition objectDefinition = objectDefinitionLocalService
-					.fetchObjectDefinitionByClassName(model.getCompanyId(), objectDefinitionName);
-
-			if (objectDefinition != null) {
-				ServiceContext serviceContext = new ServiceContext();
-				Map<String, Serializable> values = setValues(ipAddress,EmployeeConstant.UPDATE,model);
-				
-				ObjectEntry objectEntry = objectEntryLocalService
-					.addObjectEntry(model.getUserId(), model.getGroupId(),objectDefinition.getObjectDefinitionId()
-							,values, serviceContext);
-				log.info("Object entry created with ID: " + objectEntry.getObjectEntryId());
-			}
-			
-		} catch (PortalException e) {
-			log.error("Error creating activity entry: " + e.getMessage(), e);
-		}
-		super.onAfterUpdate(originalModel, model);
+		log.info("Started modelListener after Update");
+		handleActivityLogging(EmployeeDetailModel,EmployeeConstant.UPDATE);
+		super.onAfterUpdate(originalModel, EmployeeDetailModel);
 	}
-	
+
 	@Override
-	public void onAfterRemove(EmployeeDetail model) throws ModelListenerException {
-		try {
-			log.info("Started modelListener");
-			
-			Set<String> IPAddresses =  PortalUtil.getComputerAddresses();
-			String ipAddress = IPAddresses.toString();
-			
-			String objectDefinitionName = getObjectDefinationName();
-			
-			ObjectDefinition objectDefinition = objectDefinitionLocalService
-					.fetchObjectDefinitionByClassName(model.getCompanyId(), objectDefinitionName);
-
-			if (objectDefinition != null) {
-				ServiceContext serviceContext = new ServiceContext();
-				Map<String, Serializable> values = setValues(ipAddress,EmployeeConstant.DELETE,model);
-				
-				ObjectEntry objectEntry = objectEntryLocalService
-					.addObjectEntry(model.getUserId(), model.getGroupId(),objectDefinition.getObjectDefinitionId()
-							,values, serviceContext);
-				log.info("Object entry created with ID: " + objectEntry.getObjectEntryId());
-			}
-			
-		} catch (PortalException e) {
-			log.error("Error creating activity entry: " + e.getMessage(), e);
-		}
-		super.onAfterRemove(model);
+	public void onAfterRemove(EmployeeDetail EmployeeDetailModel) throws ModelListenerException {
+		log.info("Started modelListener after delete");
+		handleActivityLogging(EmployeeDetailModel,EmployeeConstant.DELETE);
+		super.onAfterRemove(EmployeeDetailModel);
 	}
-	
+
 	@Override
-	public void onAfterCreate(EmployeeDetail model) throws ModelListenerException {
-		try {
-			log.info("Started modelListener");
-			
-			Set<String> IPAddresses =  PortalUtil.getComputerAddresses();
-			String ipAddress = IPAddresses.toString();
-			
-			String objectDefinitionName = getObjectDefinationName();
-			
-			ObjectDefinition objectDefinition = objectDefinitionLocalService
-					.fetchObjectDefinitionByClassName(model.getCompanyId(), objectDefinitionName);
+	public void onAfterCreate(EmployeeDetail EmployeeDetailModel) throws ModelListenerException {
+		log.info("Started modelListener after insert");
+		handleActivityLogging(EmployeeDetailModel,EmployeeConstant.INSERT);
+		super.onAfterCreate(EmployeeDetailModel);
+	}
 
-			if (objectDefinition != null) {
+	public void handleActivityLogging(EmployeeDetail EmployeeDetailModel, String Type) {
+		try {
+			Set<String> IPAddresses = PortalUtil.getComputerAddresses();
+			String ipAddress = IPAddresses.toString();
+
+			Locale locale = LocaleUtil.fromLanguageId(EmployeeConstant.ACTIVITY);
+			ObjectDefinition objectDefinition = null;
+			List<ObjectDefinition> objectDefinitions = ObjectDefinitionLocalService.getObjectDefinitions(-1, -1);
+			for (ObjectDefinition object : objectDefinitions) {
+				if (object.getLabel(locale).equals(EmployeeConstant.ACTIVITY)) {
+					objectDefinition = object;
+				}
+			}
+			log.info(objectDefinition);
+			
+			if (Validator.isNotNull(objectDefinition)) {
+				
 				ServiceContext serviceContext = new ServiceContext();
-				Map<String, Serializable> values = setValues(ipAddress,EmployeeConstant.INSERT,model);
-				log.info("get values of employee: "+values);
-				ObjectEntry objectEntry = objectEntryLocalService
-					.addObjectEntry(model.getUserId(), model.getGroupId(),objectDefinition.getObjectDefinitionId()
-							,values, serviceContext);
+				
+				Map<String, Serializable> values = new HashMap<>();
+				values.put(EmployeeConstant.ACTIVITY_TYPE, Type);
+				values.put(EmployeeConstant.DETAILS,EmployeeDetailModel.getEmail());
+				values.put(EmployeeConstant.IP_ADDRESS, ipAddress);
+				
+				ObjectEntry objectEntry = objectEntryLocalService.addObjectEntry(EmployeeDetailModel.getUserId(),
+						EmployeeDetailModel.getGroupId(), objectDefinition.getObjectDefinitionId(), values,
+						serviceContext);
+				
 				log.info("Object entry created with ID: " + objectEntry.getObjectEntryId());
 			}
-			
 		} catch (PortalException e) {
 			log.error("Error creating activity entry: " + e.getMessage(), e);
 		}
-		super.onAfterCreate(model);
-	}
-
-	public String getObjectDefinationName() {
-		Locale locale = LocaleUtil.fromLanguageId(EmployeeConstant.ACTIVITY);
-		String objectDefinitionName = null;
-		List<ObjectDefinition> objectDefinitions = objectDefinitionLocalService.getObjectDefinitions(-1, -1);
-		for (ObjectDefinition objectDefinition : objectDefinitions) {
-			if (objectDefinition.getLabel(locale).equals(EmployeeConstant.ACTIVITY)) {
-				objectDefinitionName = objectDefinition.getClassName();
-			}
-		}
-		log.info(objectDefinitionName);
-		return objectDefinitionName;
-	}
-	
-	public Map<String, Serializable> setValues(String ipAddress,String type,EmployeeDetail model) {
-		log.info("Setting values for activity" + ipAddress + type + model);
-		Map<String, Serializable> values = new HashMap<>();
-		values.put(EmployeeConstant.ACTIVITY_TYPE,type);
-		values.put(EmployeeConstant.DETAILS, model.getFirstName() + model.getEmail());
-		values.put(EmployeeConstant.IP_ADDRESS, ipAddress);
-		log.info(values);
-		return values;
 	}
 }
-
