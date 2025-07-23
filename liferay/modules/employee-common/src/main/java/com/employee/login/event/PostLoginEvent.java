@@ -36,10 +36,10 @@ public class PostLoginEvent implements LifecycleAction {
 	private static final Log log = LogFactoryUtil.getLog(PostLoginEvent.class);
 
 	@Reference
-	private ObjectEntryLocalService objectEntryLocalService;
+	ObjectEntryLocalService objectEntryLocalService;
 
 	@Reference
-	private ObjectDefinitionLocalService objectDefinitionLocalService;
+	ObjectDefinitionLocalService objectDefinitionLocalService;
 	
 	@Override
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) throws ActionException {
