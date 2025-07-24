@@ -3,7 +3,6 @@ package com.employee.model.listener;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import com.employee.constant.EmployeeConstant;
@@ -19,9 +18,9 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 @Component(
@@ -68,9 +67,10 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 	
 	public void handleActivityLogging(EmployeeDetail employeeDetailModel, String Type) {
 		try {
-			Set<String> IPAddresses = PortalUtil.getComputerAddresses();
-			String ipAddress = IPAddresses.toString();
-
+			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+			String ipAddress = serviceContext.getRemoteAddr();
+			log.info("IpAddress is : "+ipAddress);
+			
 			ObjectDefinition objectDefinition =
 				    ObjectDefinitionLocalService.fetchObjectDefinitionByExternalReferenceCode(
 				        EmployeeConstant.ACTIVITY, employeeDetailModel.getCompanyId());
@@ -78,8 +78,6 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 			log.info("ObjectDefinition object is fetched");
 
 			if (Validator.isNotNull(objectDefinition)) {
-				
-				ServiceContext serviceContext = new ServiceContext();
 				
 				Map<String, Serializable> values = new HashMap<>();
 				values.put(EmployeeConstant.ACTIVITY_TYPE, Type);
