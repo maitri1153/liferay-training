@@ -2,10 +2,7 @@ package com.employee.login.event;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -19,10 +16,11 @@ import com.liferay.portal.kernel.events.LifecycleAction;
 import com.liferay.portal.kernel.events.LifecycleEvent;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.user.constat.EventConstant;
 import com.liferay.portal.kernel.util.Validator;
 
 @Component(
@@ -43,20 +41,20 @@ public class PostLoginEvent implements LifecycleAction {
 	ObjectDefinitionLocalService objectDefinitionLocalService;
 	
 	@Reference 
-	UserGroupRoleLocalService userGroupRoleLocalService;
+	GroupLocalService groupLocalService;
 	
 	@Override
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) throws ActionException {
 		try {
 			log.info("Post Login event is Started");
 			
-			Set<String> IPAddresses =  PortalUtil.getComputerAddresses();
-			String ipAddress = IPAddresses.toString();
+			HttpServletRequest request = PortalUtil.getOriginalServletRequest(lifecycleEvent.getRequest());
+			String ipAddress = request.getRemoteAddr();
+			log.info("Client IP Address: " + ipAddress);
 			
-			HttpServletRequest request = lifecycleEvent.getRequest();
 			long companyId = PortalUtil.getUser(request).getCompanyId();
 			
-			Group group = GroupLocalServiceUtil.getGroup(companyId, "ignek intranet");
+			Group group = GroupLocalServiceUtil.getGroup(companyId, EmployeeConstant.IGNEK_INTRANET);
 			long groupId = group.getGroupId();
 			
 			ObjectDefinition objectDefinition =
@@ -77,7 +75,7 @@ public class PostLoginEvent implements LifecycleAction {
 				
 				log.info("Object entry created with ID: " + objectEntry.getObjectEntryId());
 			}
-		}catch(Exception e) {
+		} catch(Exception e) {
 			log.info("Error occured while generation activity entry "+ e);
 		}
 	}
