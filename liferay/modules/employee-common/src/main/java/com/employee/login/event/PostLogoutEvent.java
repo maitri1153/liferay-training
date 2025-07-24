@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.user.constat.EventConstant;
 import src.main.java.com.employee.login.event.UserLogin;
+import com.liferay.portal.kernel.util.Validator;
 
 @Component(
 	property = {
@@ -48,7 +49,7 @@ public class PostLogoutEvent implements LifecycleAction {
 	@Override
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) throws ActionException {
 		try {
-			log.info("After Login is Started");
+			log.info("Post Logout event is Started");
 			
 			Set<String> IPAddresses =  PortalUtil.getComputerAddresses();
 			String ipAddress = IPAddresses.toString();
@@ -56,15 +57,14 @@ public class PostLogoutEvent implements LifecycleAction {
 			HttpServletRequest request = lifecycleEvent.getRequest();
 			long companyId = PortalUtil.getUser(request).getCompanyId();
 			
-			List<UserGroupRole> users = userGroupRoleLocalService.getUserGroupRoles(PortalUtil.getUser(request).getUserId());
-			UserGroupRole user = users.getFirst();
-			long groupId = user.getGroupId();
+			Group group = GroupLocalServiceUtil.getGroup(companyId, "ignek intranet");
+			long groupId = group.getGroupId();
 			
 			ObjectDefinition objectDefinition =
 				    objectDefinitionLocalService.fetchObjectDefinitionByExternalReferenceCode(
 				        EmployeeConstant.ACTIVITY,companyId);
 		
-			if (objectDefinition != null) {
+			if (Validator.isNotNull(objectDefinition)) {
 				ServiceContext serviceContext = new ServiceContext();
 				Map<String, Serializable> values = new HashMap<>();
 				values.put(EmployeeConstant.ACTIVITY_TYPE,EmployeeConstant.LOGOUT);
