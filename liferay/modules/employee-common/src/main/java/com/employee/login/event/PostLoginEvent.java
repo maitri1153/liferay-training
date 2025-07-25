@@ -54,7 +54,7 @@ public class PostLoginEvent implements LifecycleAction {
 			
 			long companyId = PortalUtil.getUser(request).getCompanyId();
 			
-			Group group = GroupLocalServiceUtil.getGroup(companyId, EmployeeConstant.IGNEK_INTRANET);
+			Group group = groupLocalService.getGroup(companyId, EmployeeConstant.IGNEK_INTRANET);
 			long groupId = group.getGroupId();
 			
 			ObjectDefinition objectDefinition =
