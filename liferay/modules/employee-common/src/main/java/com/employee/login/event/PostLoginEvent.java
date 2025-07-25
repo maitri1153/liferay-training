@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalService;
-import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -31,17 +30,6 @@ import com.liferay.portal.kernel.util.Validator;
 )
 
 public class PostLoginEvent implements LifecycleAction {
-	
-	private static final Log log = LogFactoryUtil.getLog(PostLoginEvent.class);
-
-	@Reference
-	ObjectEntryLocalService objectEntryLocalService;
-
-	@Reference
-	ObjectDefinitionLocalService objectDefinitionLocalService;
-	
-	@Reference 
-	GroupLocalService groupLocalService;
 	
 	@Override
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) throws ActionException {
@@ -79,4 +67,15 @@ public class PostLoginEvent implements LifecycleAction {
 			log.info("Error occured while generation activity entry "+ e);
 		}
 	}
+	
+	private static final Log log = LogFactoryUtil.getLog(PostLoginEvent.class);
+
+	@Reference
+	ObjectEntryLocalService objectEntryLocalService;
+
+	@Reference
+	ObjectDefinitionLocalService objectDefinitionLocalService;
+	
+	@Reference 
+	GroupLocalService groupLocalService;
 }

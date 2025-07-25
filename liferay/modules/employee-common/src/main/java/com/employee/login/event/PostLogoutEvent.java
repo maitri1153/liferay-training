@@ -32,17 +32,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 public class PostLogoutEvent implements LifecycleAction {
 	
-	private static final Log log = LogFactoryUtil.getLog(PostLogoutEvent.class);
-
-	@Reference
-	ObjectEntryLocalService objectEntryLocalService;
-
-	@Reference
-	ObjectDefinitionLocalService objectDefinitionLocalService;
-	
-	@Reference 
-	GroupLocalService groupLocalService;
-	
 	@Override
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) throws ActionException {
 		try {
@@ -80,4 +69,15 @@ public class PostLogoutEvent implements LifecycleAction {
 			log.info("Error occured while generation activity entry "+ e);
 		}
 	}
+	
+	private static final Log log = LogFactoryUtil.getLog(PostLogoutEvent.class);
+
+	@Reference
+	ObjectEntryLocalService objectEntryLocalService;
+
+	@Reference
+	ObjectDefinitionLocalService objectDefinitionLocalService;
+	
+	@Reference 
+	GroupLocalService groupLocalService;
 }

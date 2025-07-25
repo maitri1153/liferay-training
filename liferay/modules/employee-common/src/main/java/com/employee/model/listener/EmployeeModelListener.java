@@ -29,20 +29,6 @@ import com.liferay.portal.kernel.util.Validator;
 )
 
 public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
-
-	private static final Log log = LogFactoryUtil.getLog(EmployeeModelListener.class);
-
-	@Reference
-	private ObjectEntryLocalService objectEntryLocalService;
-
-	@Reference
-	ObjectDefinitionLocalService ObjectDefinitionLocalService;
-	
-	@Reference
-	UserLocalService userLocalService;
-	
-	@Reference
-	UserGroupRoleLocalService user;
 	
 	@Override
 	public void onAfterUpdate(EmployeeDetail originalModel, EmployeeDetail employeeDetailModel) throws ModelListenerException {
@@ -95,4 +81,18 @@ public class EmployeeModelListener extends BaseModelListener<EmployeeDetail> {
 			log.error("Error creating activity entry: " + e.getMessage(), e);
 		}
 	}
+	
+	private static final Log log = LogFactoryUtil.getLog(EmployeeModelListener.class);
+
+	@Reference
+	private ObjectEntryLocalService objectEntryLocalService;
+
+	@Reference
+	ObjectDefinitionLocalService ObjectDefinitionLocalService;
+	
+	@Reference
+	UserLocalService userLocalService;
+	
+	@Reference
+	UserGroupRoleLocalService user;
 }

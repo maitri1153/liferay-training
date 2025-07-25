@@ -49,20 +49,6 @@ import com.liferay.portal.search.query.Queries;
 )
 
 public class EmployeeWebPortlet extends MVCPortlet {
-
-	private static final Log log = LogFactoryUtil.getLog(EmployeeWebPortlet.class);
-	
-	@Reference
-	protected Queries queries;
-	
-	@Reference
-	EmployeeDetailLocalService employeeDetailLocalService;
-	
-	@Reference
-	UserGroupRoleLocalService userGroupRoleLocalService;
-	
-	@Reference
-	RoleLocalService roleLocalService;
 	
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
@@ -108,8 +94,22 @@ public class EmployeeWebPortlet extends MVCPortlet {
 			
 			super.render(renderRequest, renderResponse);
 			
-		}catch(Exception e) {
+		} catch(Exception e) {
 			log.error("Error while fetching employee data : "+ e);
 		}
 	}
+	
+	private static final Log log = LogFactoryUtil.getLog(EmployeeWebPortlet.class);
+	
+	@Reference
+	protected Queries queries;
+	
+	@Reference
+	EmployeeDetailLocalService employeeDetailLocalService;
+	
+	@Reference
+	UserGroupRoleLocalService userGroupRoleLocalService;
+	
+	@Reference
+	RoleLocalService roleLocalService;
 }
