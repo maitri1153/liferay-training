@@ -30,11 +30,6 @@ import com.lowagie.text.pdf.PdfWriter;
 
 public class PDFDownload implements MVCResourceCommand {
 
-	private static final Log log = LogFactoryUtil.getLog(PDFDownload.class);
-
-	@Reference
-	EmployeeDetailLocalService employeeDetailLocalService;
-
 	@Override
 	public boolean serveResource(ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 			throws PortletException {
@@ -89,4 +84,9 @@ public class PDFDownload implements MVCResourceCommand {
 		}
 		return false;
 	}
+	
+	private static final Log log = LogFactoryUtil.getLog(PDFDownload.class);
+
+	@Reference
+	EmployeeDetailLocalService employeeDetailLocalService;
 }

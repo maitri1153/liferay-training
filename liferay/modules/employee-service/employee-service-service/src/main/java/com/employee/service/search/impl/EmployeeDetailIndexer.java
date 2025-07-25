@@ -22,8 +22,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 )
 
 public class EmployeeDetailIndexer extends BaseIndexer<EmployeeDetail> {
-
-	public static final String CLASS_NAME = EmployeeDetailIndexer.class.getName();
 	
 	public EmployeeDetailIndexer() {
 		setDefaultSelectedFieldNames(
@@ -105,4 +103,6 @@ public class EmployeeDetailIndexer extends BaseIndexer<EmployeeDetail> {
 	public String getClassName() {
 		return EmployeeDetail.class.getName();
 	}
+	
+	public static final String CLASS_NAME = EmployeeDetailIndexer.class.getName();
 }

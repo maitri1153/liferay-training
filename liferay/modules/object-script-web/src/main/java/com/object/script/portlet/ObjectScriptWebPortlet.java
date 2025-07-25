@@ -40,7 +40,9 @@ public class ObjectScriptWebPortlet {
 	}
 	
 	private volatile BundleContext bundleContext;
+	
 	@Reference
 	private DestinationFactory destinationFactory;
+	
 	private ServiceRegistration<Destination> serviceRegistration;
 }

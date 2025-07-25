@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 
 public class EntityCountAction extends DefaultConfigurationAction {
 
-	private static Log log = LogFactoryUtil.getLog(EntityCountWebPortlet.class);
-
 	@Override
 	public void processAction(PortletConfig portletConfig, ActionRequest actionRequest, ActionResponse actionResponse)
 			throws Exception {
@@ -39,4 +37,6 @@ public class EntityCountAction extends DefaultConfigurationAction {
 		}
 		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
+	
+	private static Log log = LogFactoryUtil.getLog(EntityCountWebPortlet.class);
 }

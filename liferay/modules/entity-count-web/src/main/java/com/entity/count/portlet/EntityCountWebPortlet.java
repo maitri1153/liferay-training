@@ -39,26 +39,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 )
 
 public class EntityCountWebPortlet extends MVCPortlet {
-
-	private static Log log = LogFactoryUtil.getLog(EntityCountWebPortlet.class);
-
-	@Reference
-	UserGroupRoleLocalService usergrouproleLocalService;
-	
-	@Reference
-	UserLocalService userLocalService;
-
-	@Reference
-	DLFileEntryLocalService dlfileentryLocalService;
-
-	@Reference
-	RoleLocalService roleLocalService;
-
-	@Reference
-	AssetCategoryLocalService categoryLocalService;
-
-	@Reference
-	AssetVocabularyLocalService vocabularyLocalService;
 	
 	@Override
 	public void render(RenderRequest renderRequest, RenderResponse renderResponse)
@@ -105,4 +85,24 @@ public class EntityCountWebPortlet extends MVCPortlet {
 		}
 		super.render(renderRequest, renderResponse);	
 	}
+	
+	private static Log log = LogFactoryUtil.getLog(EntityCountWebPortlet.class);
+
+	@Reference
+	UserGroupRoleLocalService usergrouproleLocalService;
+	
+	@Reference
+	UserLocalService userLocalService;
+
+	@Reference
+	DLFileEntryLocalService dlfileentryLocalService;
+
+	@Reference
+	RoleLocalService roleLocalService;
+
+	@Reference
+	AssetCategoryLocalService categoryLocalService;
+
+	@Reference
+	AssetVocabularyLocalService vocabularyLocalService;
 }

@@ -31,20 +31,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 public class DeleteEmployeeAction extends BaseMVCActionCommand {
 
-	private static final Log log = LogFactoryUtil.getLog(DeleteEmployeeAction.class);
-
-	@Reference
-	AddressLocalService addressLocalService;
-	
-	@Reference
-	CounterLocalService counterLocalService;
-
-	@Reference
-	EmployeeDetailLocalService employeedetailLocalService;
-
-	@Reference
-	UserLocalService userLocalService;
-
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) 
 			throws Exception {
@@ -83,4 +69,18 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 			log.error("Error in deleteActionCommand: ", e);
 		}
 	}
+	
+	private static final Log log = LogFactoryUtil.getLog(DeleteEmployeeAction.class);
+
+	@Reference
+	AddressLocalService addressLocalService;
+	
+	@Reference
+	CounterLocalService counterLocalService;
+
+	@Reference
+	EmployeeDetailLocalService employeedetailLocalService;
+
+	@Reference
+	UserLocalService userLocalService;
 }

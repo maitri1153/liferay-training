@@ -30,15 +30,6 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 
 public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 
-	@Reference
-	EmployeeDetailLocalService employeeDetailLocalService;
-	
-	@Reference
-	CounterLocalService counterLocalService;
-	
-	@Reference
-	UserLocalService userLocalService;
-
 	@Override
 	public EmployeeDetailObject getEmployeeDetailById(@NotNull Long employeeId) 
 			throws Exception {
@@ -156,4 +147,12 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 
 	public static final Log log = LogFactoryUtil.getLog(EmployeeDetailResourceImpl.class);
 	
+	@Reference
+	EmployeeDetailLocalService employeeDetailLocalService;
+	
+	@Reference
+	CounterLocalService counterLocalService;
+	
+	@Reference
+	UserLocalService userLocalService;
 }

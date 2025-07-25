@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.AddressLocalService;
-import com.liferay.portal.kernel.service.ContactLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
@@ -41,29 +40,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 )
 
 public class AddEmployeeAction extends BaseMVCActionCommand {
-
-	private static final Log log = LogFactoryUtil.getLog(AddEmployeeAction.class);
-
-	@Reference
-	AddressLocalService addressLocalService;
-
-	@Reference
-	CounterLocalService counterLocalService;
-
-	@Reference
-	ContactLocalService contatctLocalService;
-
-	@Reference
-	EmployeeDetailLocalService employeedetailLocalService;
-
-	@Reference
-	RoleLocalService roleLocalService;
-
-	@Reference
-	UserLocalService userLocalService;
-
-	@Reference
-	UserGroupRoleLocalService userGroupRoleLocalService;
 
 	@Override
 	protected void doProcessAction(ActionRequest actionRequest, ActionResponse actionResponse) 
@@ -214,4 +190,24 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 			log.info("Employee is added");
 		}
 	}
+	
+	private static final Log log = LogFactoryUtil.getLog(AddEmployeeAction.class);
+
+	@Reference
+	AddressLocalService addressLocalService;
+
+	@Reference
+	CounterLocalService counterLocalService;
+
+	@Reference
+	EmployeeDetailLocalService employeedetailLocalService;
+
+	@Reference
+	RoleLocalService roleLocalService;
+
+	@Reference
+	UserLocalService userLocalService;
+
+	@Reference
+	UserGroupRoleLocalService userGroupRoleLocalService;
 }
