@@ -238,6 +238,7 @@
 .LoginHeadDiv{
 	justify-items: center;
 }
+
 .signInText{
 	font-family:'Poppins';
 	font-weight: 600;
