@@ -47,12 +47,18 @@
 		}
 		%>
 		<div class="portalNameDiv">
-			<p class="portalName">IGNEK INTRANET</p>
+			<p class="portalName">
+				<liferay-ui:message key="ignek-intranet"/>
+			</p>
 		</div>
 		
 		<div class="LoginHeadDiv">
-		   <p class="signInText">SIGN IN</p>
-		   <p class="loginSubHeading">Enter your credentials to access your account</p>
+		   <p class="signInText">
+		   		<liferay-ui:message key="sign-in"/>
+		   </p>
+		   <p class="loginSubHeading">
+		   		<liferay-ui:message key="enter-your-credentials-to-access-your-account"/>
+		   </p>
 		</div>
 
 		<div class="login-container">
@@ -165,14 +171,14 @@
 					%>
 
 					<aui:input cssClass="clearable" label="<%= loginLabel %>" name="login" required="<%= true %>" showRequiredLabel="<%= false %>"
-					     placeholder="Enter your Email"  type="text" value="<%= login %>">
+					     placeholder="<%= LanguageUtil.get(themeDisplay.getLocale(), "enter-your-email") %>" type="text" value="<%= login %>">
 						<c:if test="<%= authType.equals(CompanyConstants.AUTH_TYPE_EA) %>">
 							<aui:validator name="email" />
 						</c:if>
 					</aui:input>
 
 					<aui:input name="password" required="<%= true %>" showRequiredLabel="<%= false %>" type="password" value="<%= password %>"
-					   placeholder="Enter your password"/>
+					 placeholder="<%= LanguageUtil.get(themeDisplay.getLocale(), "enter-your-password") %>" />
 
 					<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
 				</aui:fieldset>
@@ -238,7 +244,6 @@
 	font-size: 22px;
 	line-height: 100%;
 	text-transform: uppercase;
-	font-family:inherit;
 	margin-bottom:10px;
 }
 
@@ -305,6 +310,7 @@
 }
 
 .portalName{
+	text-transform:uppercase;
 	padding-left: 10px;
     font-family:'Poppins';
     font-weight: 700;
