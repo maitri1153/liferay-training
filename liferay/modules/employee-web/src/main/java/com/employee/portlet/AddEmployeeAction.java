@@ -10,6 +10,7 @@ import com.employee.constants.EmployeeWebPortletKeys;
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.service.EmployeeDetailLocalService;
 import com.liferay.counter.kernel.service.CounterLocalService;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Address;
@@ -127,7 +128,7 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 			String password1 = "test";
 			String password2 = "test";
 			String screenName = firstName + lastName;
-			String middleName = null;
+			String middleName = StringPool.NULL;
 
 			int birthDay = 11;
 			int birthYear = 2000;
@@ -194,20 +195,20 @@ public class AddEmployeeAction extends BaseMVCActionCommand {
 	private static final Log log = LogFactoryUtil.getLog(AddEmployeeAction.class);
 
 	@Reference
-	AddressLocalService addressLocalService;
+	private AddressLocalService addressLocalService;
 
 	@Reference
-	CounterLocalService counterLocalService;
+	private CounterLocalService counterLocalService;
 
 	@Reference
-	EmployeeDetailLocalService employeedetailLocalService;
+	private EmployeeDetailLocalService employeedetailLocalService;
 
 	@Reference
-	RoleLocalService roleLocalService;
+	private RoleLocalService roleLocalService;
 
 	@Reference
-	UserLocalService userLocalService;
+	private UserLocalService userLocalService;
 
 	@Reference
-	UserGroupRoleLocalService userGroupRoleLocalService;
+	private UserGroupRoleLocalService userGroupRoleLocalService;
 }

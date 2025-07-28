@@ -88,5 +88,5 @@ public class PDFDownload implements MVCResourceCommand {
 	private static final Log log = LogFactoryUtil.getLog(PDFDownload.class);
 
 	@Reference
-	EmployeeDetailLocalService employeeDetailLocalService;
+	private EmployeeDetailLocalService employeeDetailLocalService;
 }

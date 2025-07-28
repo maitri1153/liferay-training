@@ -102,14 +102,14 @@ public class EmployeeWebPortlet extends MVCPortlet {
 	private static final Log log = LogFactoryUtil.getLog(EmployeeWebPortlet.class);
 	
 	@Reference
-	protected Queries queries;
+	private Queries queries;
 	
 	@Reference
-	EmployeeDetailLocalService employeeDetailLocalService;
+	private EmployeeDetailLocalService employeeDetailLocalService;
 	
 	@Reference
-	UserGroupRoleLocalService userGroupRoleLocalService;
+	private UserGroupRoleLocalService userGroupRoleLocalService;
 	
 	@Reference
-	RoleLocalService roleLocalService;
+	private RoleLocalService roleLocalService;
 }

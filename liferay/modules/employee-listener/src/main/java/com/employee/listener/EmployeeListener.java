@@ -58,7 +58,7 @@ public class EmployeeListener extends BaseModelListener<EmployeeDetail> {
 			log.info("IpAddress is : "+ipAddress);
 			
 			ObjectDefinition objectDefinition =
-				    ObjectDefinitionLocalService.fetchObjectDefinitionByExternalReferenceCode(
+				    objectDefinitionLocalService.fetchObjectDefinitionByExternalReferenceCode(
 				        EmployeeListenerConstant.ACTIVITY, employeeDetailModel.getCompanyId());
 
 			log.info("ObjectDefinition object is fetched");
@@ -88,11 +88,11 @@ public class EmployeeListener extends BaseModelListener<EmployeeDetail> {
 	private ObjectEntryLocalService objectEntryLocalService;
 
 	@Reference
-	ObjectDefinitionLocalService ObjectDefinitionLocalService;
+	private ObjectDefinitionLocalService objectDefinitionLocalService;
 	
 	@Reference
-	UserLocalService userLocalService;
+	private UserLocalService userLocalService;
 	
 	@Reference
-	UserGroupRoleLocalService user;
+	private UserGroupRoleLocalService user;
 }

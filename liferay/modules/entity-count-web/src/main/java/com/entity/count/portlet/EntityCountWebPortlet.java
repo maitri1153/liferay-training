@@ -89,20 +89,20 @@ public class EntityCountWebPortlet extends MVCPortlet {
 	private static Log log = LogFactoryUtil.getLog(EntityCountWebPortlet.class);
 
 	@Reference
-	UserGroupRoleLocalService usergrouproleLocalService;
+	private UserGroupRoleLocalService usergrouproleLocalService;
 	
 	@Reference
-	UserLocalService userLocalService;
+	private UserLocalService userLocalService;
 
 	@Reference
-	DLFileEntryLocalService dlfileentryLocalService;
+	private DLFileEntryLocalService dlfileentryLocalService;
 
 	@Reference
-	RoleLocalService roleLocalService;
+	private RoleLocalService roleLocalService;
 
 	@Reference
-	AssetCategoryLocalService categoryLocalService;
+	private AssetCategoryLocalService categoryLocalService;
 
 	@Reference
-	AssetVocabularyLocalService vocabularyLocalService;
+	private AssetVocabularyLocalService vocabularyLocalService;
 }

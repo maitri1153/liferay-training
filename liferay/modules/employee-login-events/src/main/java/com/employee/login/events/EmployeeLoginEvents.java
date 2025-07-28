@@ -72,14 +72,14 @@ public class EmployeeLoginEvents implements LifecycleAction {
 	private static final Log log = LogFactoryUtil.getLog(EmployeeLoginEvents.class);
 
 	@Reference
-	ObjectEntryLocalService objectEntryLocalService;
+	private ObjectEntryLocalService objectEntryLocalService;
 
 	@Reference
-	ObjectDefinitionLocalService objectDefinitionLocalService;
+	private ObjectDefinitionLocalService objectDefinitionLocalService;
 	
 	@Reference 
-	GroupLocalService groupLocalService;
+	private GroupLocalService groupLocalService;
 	
 	@Reference
-	Portal portal;
+	private Portal portal;
 }

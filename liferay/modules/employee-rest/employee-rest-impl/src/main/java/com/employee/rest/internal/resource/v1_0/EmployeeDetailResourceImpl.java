@@ -148,11 +148,11 @@ public class EmployeeDetailResourceImpl extends BaseEmployeeDetailResourceImpl {
 	public static final Log log = LogFactoryUtil.getLog(EmployeeDetailResourceImpl.class);
 	
 	@Reference
-	EmployeeDetailLocalService employeeDetailLocalService;
+	private EmployeeDetailLocalService employeeDetailLocalService;
 	
 	@Reference
-	CounterLocalService counterLocalService;
+	private CounterLocalService counterLocalService;
 	
 	@Reference
-	UserLocalService userLocalService;
+	private UserLocalService userLocalService;
 }

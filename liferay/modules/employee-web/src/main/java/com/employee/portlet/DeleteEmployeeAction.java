@@ -73,14 +73,14 @@ public class DeleteEmployeeAction extends BaseMVCActionCommand {
 	private static final Log log = LogFactoryUtil.getLog(DeleteEmployeeAction.class);
 
 	@Reference
-	AddressLocalService addressLocalService;
+	private AddressLocalService addressLocalService;
 	
 	@Reference
-	CounterLocalService counterLocalService;
+	private CounterLocalService counterLocalService;
 
 	@Reference
-	EmployeeDetailLocalService employeedetailLocalService;
+	private EmployeeDetailLocalService employeedetailLocalService;
 
 	@Reference
-	UserLocalService userLocalService;
+	private UserLocalService userLocalService;
 }
