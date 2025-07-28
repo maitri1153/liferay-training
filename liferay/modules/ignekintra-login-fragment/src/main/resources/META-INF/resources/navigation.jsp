@@ -8,5 +8,3 @@
 <%@ include file="/init.jsp" %>
 
 <%@ include file="/navigation.jspf" %>
-
-<%@ include file="/loginNavigation.jspf" %>

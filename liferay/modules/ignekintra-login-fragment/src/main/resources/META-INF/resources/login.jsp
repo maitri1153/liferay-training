@@ -187,7 +187,7 @@
 					<aui:button type="submit" value="SIGN IN"/>
 				</aui:button-row>
 			</aui:form>
-			<%@ include file="/loginNavigation.jspf" %>
+			<%@ include file="/reset-password.jspf" %>
 		</div>
 
 		<aui:script sandbox="<%= true %>">
