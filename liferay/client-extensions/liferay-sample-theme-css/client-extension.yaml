@@ -3,10 +3,10 @@ assemble:
         into: static/img
     -   from: build/buildTheme/images
         into: static/images
-test-page-theme-css:
+liferay-sample-theme-css:
     clayRTLURL: css/clay_rtl.css
     clayURL: css/clay.css
     mainRTLURL: css/main_rtl.css
     mainURL: css/main.css
-    name: test-page-theme-css
+    name: Liferay Sample Theme CSS
     type: themeCSS
