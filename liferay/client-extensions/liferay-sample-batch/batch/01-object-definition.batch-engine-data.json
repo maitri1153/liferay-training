@@ -1,0 +1,334 @@
+{
+	"configuration": {
+		"className": "com.liferay.object.admin.rest.dto.v1_0.ObjectDefinition",
+		"parameters": {
+			"containsHeaders": "false",
+			"createStrategy": "UPSERT",
+			"importStrategy": "ON_ERROR_FAIL",
+			"updateStrategy": "UPDATE"
+		},
+		"taskItemDelegateName": "DEFAULT"
+	},
+	"items": [
+		{
+			"enableComments": false,
+			"objectRelationships": [
+				{
+					"objectDefinitionSystem2": false,
+					"parameterObjectFieldName": "",
+					"parameterObjectFieldId": 0,
+					"label": {
+						"en_US": "BatchToBatch2"
+					},
+					"reverse": false,
+					"type": "manyToMany",
+					"externalReferenceCode": "28d9f938-8b92-306c-0f35-e1f0f422bc5c",
+					"objectDefinitionModifiable2": true,
+					"system": false,
+					"name": "batchToBatch2",
+					"objectDefinitionScope2": "site",
+					"deletionType": "prevent",
+					"objectDefinitionExternalReferenceCode1": "C_BATCH",
+					"objectDefinitionExternalReferenceCode2": "C_BATCH2",
+					"objectDefinitionName2": "Batch2"
+				}
+			],
+			"objectFolderExternalReferenceCode": "Practice",
+			"enableCategorization": true,
+			"accountEntryRestrictedObjectFieldName": "",
+			"className": "com.liferay.object.model.ObjectDefinition#A4T8",
+			"objectActions": [],
+			"enableLocalization": true,
+			"accountEntryRestricted": false,
+			"externalReferenceCode": "C_BATCH",
+			"objectFields": [
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "String",
+					"label": {
+						"en_US": "Author"
+					},
+					"type": "String",
+					"required": false,
+					"externalReferenceCode": "f95eefe9-e263-3421-980f-57f22d120e02",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "creator",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Date",
+					"label": {
+						"en_US": "Create Date"
+					},
+					"type": "Date",
+					"required": false,
+					"externalReferenceCode": "66471547-ede4-09e9-115a-62d45407982d",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "createDate",
+					"state": false,
+					"businessType": "Date",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "false",
+					"DBType": "String",
+					"label": {
+						"en_US": "External Reference Code"
+					},
+					"type": "String",
+					"required": false,
+					"externalReferenceCode": "028caba7-c6c4-461a-079a-2aa78aacc26a",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "externalReferenceCode",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": true,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Long",
+					"label": {
+						"en_US": "ID"
+					},
+					"type": "Long",
+					"required": false,
+					"externalReferenceCode": "ec48bc9b-e065-4f47-44ad-36c643e63e45",
+					"indexedAsKeyword": true,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "id",
+					"state": false,
+					"businessType": "LongInteger",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Date",
+					"label": {
+						"en_US": "Modified Date"
+					},
+					"type": "Date",
+					"required": false,
+					"externalReferenceCode": "6249b026-8d55-90af-6dd4-f1a2b76ee38a",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "modifiedDate",
+					"state": false,
+					"businessType": "Date",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Integer",
+					"label": {
+						"en_US": "Status"
+					},
+					"type": "Integer",
+					"required": false,
+					"externalReferenceCode": "9570f174-478b-5e3f-4914-4555bdaba78e",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "status",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "false",
+					"DBType": "String",
+					"label": {
+						"en_US": "External"
+					},
+					"type": "String",
+					"required": false,
+					"externalReferenceCode": "EXTER",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "exter",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				}
+			
+			],
+			"restContextPath": "/o/c/batches",
+			"scope": "site",
+			"portlet": true,
+			"modifiable": true,
+			"parameterRequired": false,
+			"enableObjectEntryHistory": false,
+			"titleObjectFieldName": "id",
+			"objectValidationRules": [],
+			"active": true,
+			"defaultLanguageId": "en_US",
+			"enableIndexSearch": true,
+			"label": {
+				"en_US": "Batch"
+			},
+			"panelCategoryKey": "site_administration.design",
+			"pluralLabel": {
+				"en_US": "Batches"
+			},
+			"objectLayouts": [
+				{
+					"objectLayoutTabs": [
+						{
+							"name": {
+								"en_US": "Batch"
+							},
+							"objectLayoutBoxes": [
+								{
+									"objectLayoutRows": [
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "id",
+													"size": 12,
+													"priority": 0
+												}
+											],
+											"priority": 0
+										},
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "title",
+													"size": 12,
+													"priority": 0
+												}
+											],
+											"priority": 0
+										},
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "name",
+													"size": 12,
+													"priority": 0
+												}
+											],
+											"priority": 0
+										},
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "type",
+													"size": 12,
+													"priority": 0
+												}
+											],
+											"priority": 0
+										}
+									],
+									"collapsable": false,
+									"name": {
+										"en_US": "Batch"
+									},
+									"priority": 0,
+									"type": "regular"
+								}
+							],
+							"priority": 0
+						}
+					],
+					"objectDefinitionExternalReferenceCode": "C_Batch",
+					"name": {
+						"en_US": "Batch Layout"
+					},
+					"defaultObjectLayout": true
+				}
+			],
+			"system": false,
+			"objectViews": [
+				{
+					"objectDefinitionExternalReferenceCode": "C_BATCH",
+					"name": {
+						"en_US": "Batch View"
+					},
+					"objectViewFilterColumns": [],
+					"objectViewSortColumns": [],
+					"defaultObjectView": true,
+					"objectViewColumns": [
+						{
+							"objectFieldName": "id",
+							"label": {
+								"en_US": "ID"
+							},
+							"priority": 0
+						},
+						{
+							"objectFieldName": "title",
+							"label": {
+								"en_US": "Title"
+							},
+							"priority": 1
+						},
+						{
+							"objectFieldName": "name",
+							"label": {
+								"en_US": "Name"
+							},
+							"priority": 2
+						},
+						{
+							"objectFieldName": "type",
+							"label": {
+								"en_US": "type"
+							},
+							"priority": 3
+						}
+					]
+				}
+			],
+			"enableObjectEntryDraft": false,
+			"name": "Batch",
+			"actions": {
+				"permissions": {},
+				"get": {},
+				"update": {},
+				"delete": {},
+				"exportObjectDefinition": {}
+			}
+		}
+	]
+}
