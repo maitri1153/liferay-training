@@ -3,62 +3,20 @@
 		"pageElements": [
 			{
 				"definition": {
-					"collectionConfig": {
-						"collectionReference": {
-							"className": "[$OBJECT_DEFINITION_CLASS_NAME:TestObjectDefinition3$]"
-						},
-						"collectionType": "CollectionProvider"
+					"fragment": {
+						"key": "banner-fragment-entry"
 					},
-					"collectionViewports": [
-						{
-							"collectionViewportDefinition": {
-								"numberOfColumns": 1
-							},
-							"id": "landscapeMobile"
-						},
-						{
-							"collectionViewportDefinition": {},
-							"id": "portraitMobile"
-						},
-						{
-							"collectionViewportDefinition": {},
-							"id": "tablet"
-						}
-					],
-					"displayAllItems": false,
-					"displayAllPages": true,
-					"listItemStyle": "",
-					"listStyle": "",
-					"numberOfColumns": 1,
-					"numberOfItems": 5,
-					"numberOfItemsPerPage": 20,
-					"numberOfPages": 5,
-					"paginationType": "Numeric",
-					"showAllItems": false,
-					"templateKey": ""
-				},
-				"pageElements": [
-					{
-						"definition": {
-							"fragment": {
-								"key": "IGNEK-Banner"
-							},
-							"fragmentConfig": {
-								"headingLevel": "h1"
-							},
-							"fragmentFields": [
-								{
-									"id": "element-text",
-									"value": {
-										"fragmentLink": {}
-										}
-									}
-							],
-							"indexed": true
-						},
-						"type": "Fragment"
+					"fragmentConfig": {},
+					"fragmentFields": [],
+					"fragmentStyle": {
+						"backgroundFragmentImage": {}
 					}
-				],
-				"type": "Root"
+				},
+				"type": "Fragment"
 			}
+		],
+		"type": "Root"
+	},
+	"settings": {
+	}
 }
