@@ -1,0 +1,6 @@
+{
+   "className": "com.liferay.asset.kernel.model.AssetCategory",
+   "ddmTemplateKey": "TechnologyCategory",
+   "name": "Technology Category",
+   "resourceClassName": "com.liferay.portlet.display.template.PortletDisplayTemplate"
+}

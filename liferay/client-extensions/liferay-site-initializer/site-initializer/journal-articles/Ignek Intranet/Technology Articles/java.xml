@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root available-locales="en_US" default-locale="en_US" version="1.0">
+	<dynamic-element field-reference="TechnologyTitle" index-type="text" instance-id="OKIKUjm3" name="Text99674002" type="text">
+		<dynamic-content language-id="en_US"><![CDATA[Java]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element field-reference="TechnologyIcon" index-type="text" instance-id="CgjUl2Qc" name="Image76582446" type="image">
+		<dynamic-content language-id="en_US"><![CDATA[[$DOCUMENT_JSON:/site-initializer/documents/group/java.png$]]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element field-reference="TechnologyDescription" index-type="text" instance-id="rsFQ6ytj" name="RichText68976244" type="rich_text">
+		<dynamic-content language-id="en_US"><![CDATA[<p>Lorem Ipsum&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>]]></dynamic-content>
+	</dynamic-element>
+</root>

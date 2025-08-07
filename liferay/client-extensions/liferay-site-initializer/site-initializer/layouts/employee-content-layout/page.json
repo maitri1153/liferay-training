@@ -1,0 +1,17 @@
+{
+	"friendlyURL": "/employees",
+	"hidden": false,
+	"name_i18n": {
+		"en_US": "Employees"
+	},
+	"priority": 0,
+	"private": false,
+	"system": false,
+	"type": "Content",
+	"typeSettings": [
+		{
+			"key": "published",
+			"value": "true"
+		}
+	]
+}

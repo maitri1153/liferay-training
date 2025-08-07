@@ -1,0 +1,17 @@
+[
+	{
+		"key": "lessthan100",
+		"name": "Less Than 100",
+		"type": "string"
+	},
+	{
+		"key": "100To500",
+		"name": "100 To 500",
+		"type": "string"
+	},
+	{
+		"key": "morethan500",
+		"name": "More Than 500",
+		"type": "string"
+	}
+]
