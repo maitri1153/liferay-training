@@ -1,0 +1,12 @@
+    {
+      "layoutTemplateId": "2_columns_ii", 
+      "columns": [
+        {
+          "portlets": [
+            {
+              "portletId": "employee-web"
+            }
+          ]
+        }
+      ]
+    }

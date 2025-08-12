@@ -7,7 +7,7 @@ public class EmployeeLoginConstant {
 	
 	public static final String DETAILS = "details";
 	
-	public static final String IGNEK_INTRANET = "ignek intranet";
+	public static final String IGNEK_INTRANET = "Ignek";
 	
 	public static final String IP_ADDRESS = "iPAddress";
 

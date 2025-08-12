@@ -5,22 +5,6 @@
 
 package com.employee.service.service.persistence.impl;
 
-import java.io.Serializable;
-import java.lang.reflect.InvocationHandler;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.sql.DataSource;
-
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Deactivate;
-import org.osgi.service.component.annotations.Reference;
-
 import com.employee.service.exception.NoSuchEmployeeDetailException;
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.model.EmployeeDetailTable;
@@ -29,6 +13,7 @@ import com.employee.service.model.impl.EmployeeDetailModelImpl;
 import com.employee.service.service.persistence.EmployeeDetailPersistence;
 import com.employee.service.service.persistence.EmployeeDetailUtil;
 import com.employee.service.service.persistence.impl.constants.IgnekIntranetPersistenceConstants;
+
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
@@ -53,6 +38,24 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+
+import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.sql.DataSource;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The persistence implementation for the employee detail service.

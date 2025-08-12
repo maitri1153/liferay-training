@@ -13,6 +13,22 @@
 					}
 				},
 				"type": "Fragment"
+			},
+			{
+				"definition": {
+					"widgetInstance": {
+						"widgetConfig": {
+							"anyAssetType": "false",
+							"classNameIds": [
+								
+							],
+							"displayStyle": "full-content",
+							"selectionStyle": "dynamic"
+						},
+						"widgetName": "com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet"
+					}
+				},
+				"type": "Widget"
 			}
 		],
 		"type": "Root"
