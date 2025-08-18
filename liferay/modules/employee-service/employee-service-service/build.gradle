@@ -9,7 +9,6 @@ dependencies {
 
 buildService {
 	apiDir = "../employee-service-api/src/main/java"
-	testDir = "../employee-service-test/src/testIntegration/java"
 }
 
 group = "com.employee.service"

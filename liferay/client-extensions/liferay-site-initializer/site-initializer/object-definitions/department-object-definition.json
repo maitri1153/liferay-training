@@ -1,0 +1,45 @@
+{
+	"label": {
+		"en_US": "Department"
+	},
+	"name": "Department",
+	"objectFields": [
+		{
+			"DBType": "String",
+			"indexed": false,
+			"indexedAsKeyword": false,
+			"label": {
+				"en_US": "Name"
+			},
+			"name": "name",
+			"required": false
+		},
+		{
+			"DBType": "String",
+			"indexed": false,
+			"indexedAsKeyword": false,
+			"label": {
+				"en_US": "Description"
+			},
+			"name": "description",
+			"required": false
+		},
+		{
+			"DBType": "String",
+			"businessType": "Picklist",
+		 	"type": "String",
+			"label": {
+				"en_US": "Number Of Employees"
+			},
+			"listTypeDefinitionExternalReferenceCode": "EmployeeListType",
+			"name": "numberOfEmployee",
+			"required": false
+		}
+	],
+	"pluralLabel": {
+		"en_US": "Departments"
+	},
+	"externalReferenceCode": "C_DEPARTMENT",
+	"objectFolderExternalReferenceCode": "C_IGNEK",
+	"scope": "site"
+}

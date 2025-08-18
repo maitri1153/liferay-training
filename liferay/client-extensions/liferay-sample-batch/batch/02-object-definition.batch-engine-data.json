@@ -1,0 +1,337 @@
+{
+	"configuration": {
+		"className": "com.liferay.object.admin.rest.dto.v1_0.ObjectDefinition",
+		"parameters": {
+			"containsHeaders": "false",
+			"createStrategy": "UPSERT",
+			"importStrategy": "ON_ERROR_FAIL",
+			"updateStrategy": "UPDATE"
+		},
+		"taskItemDelegateName": "DEFAULT"
+	},
+	"items": [
+		{
+			"enableComments": false,
+			"objectRelationships": [
+				{
+					"objectDefinitionSystem2": false,
+					"parameterObjectFieldName": "",
+					"parameterObjectFieldId": 0,
+					"label": {
+						"en_US": "BatchToBatch2"
+					},
+					"reverse": true,
+					"type": "manyToMany",
+					"externalReferenceCode": "9e60c86e-6d81-2949-9dc8-44803177e4b2",
+					"objectDefinitionModifiable2": true,
+					"system": false,
+					"name": "batchToBatch2",
+					"objectDefinitionScope2": "site",
+					"deletionType": "prevent",
+					"objectDefinitionExternalReferenceCode1": "C_BATCH2",
+					"objectDefinitionExternalReferenceCode2": "C_BATCH",
+					"objectDefinitionName2": "Batch"
+				}
+			],
+			"objectFolderExternalReferenceCode": "Practice",
+			"enableCategorization": true,
+			"accountEntryRestrictedObjectFieldName": "",
+			"className": "com.liferay.object.model.ObjectDefinition#P5L4",
+			"objectActions": [],
+			"enableLocalization": true,
+			"accountEntryRestricted": false,
+			"externalReferenceCode": "C_BATCH2",
+			"objectFields": [
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "String",
+					"label": {
+						"en_US": "Author"
+					},
+					"type": "String",
+					"required": false,
+					"externalReferenceCode": "cb3a537a-5bcf-402f-c2fc-404703556e30",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "creator",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Date",
+					"label": {
+						"en_US": "Create Date"
+					},
+					"type": "Date",
+					"required": false,
+					"externalReferenceCode": "1956701e-8540-cedd-626d-b53dc2220e21",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "createDate",
+					"state": false,
+					"businessType": "Date",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "false",
+					"DBType": "String",
+					"label": {
+						"en_US": "External Reference Code"
+					},
+					"type": "String",
+					"required": false,
+					"externalReferenceCode": "446a5aa5-91cf-e7dc-5d8a-f4093861ea0f",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "externalReferenceCode",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": true,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Long",
+					"label": {
+						"en_US": "ID"
+					},
+					"type": "Long",
+					"required": false,
+					"externalReferenceCode": "dbb0a4ec-06c3-a574-98e3-8605d70b7d9d",
+					"indexedAsKeyword": true,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "id",
+					"state": false,
+					"businessType": "LongInteger",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Date",
+					"label": {
+						"en_US": "Modified Date"
+					},
+					"type": "Date",
+					"required": false,
+					"externalReferenceCode": "058d569d-d321-6eef-e904-44f18a2b9641",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "modifiedDate",
+					"state": false,
+					"businessType": "Date",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": false,
+					"localized": false,
+					"objectFieldSettings": [],
+					"readOnly": "true",
+					"DBType": "Integer",
+					"label": {
+						"en_US": "Status"
+					},
+					"type": "Integer",
+					"required": false,
+					"externalReferenceCode": "908998c2-1b2a-cc88-3947-942f51c33d02",
+					"indexedAsKeyword": false,
+					"system": true,
+					"indexedLanguageId": "",
+					"unique": false,
+					"name": "status",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": true,
+					"localized": true,
+					"objectFieldSettings": [],
+					"readOnly": "false",
+					"DBType": "String",
+					"label": {
+						"en_US": "Title"
+					},
+					"type": "String",
+					"required": false,
+					"externalReferenceCode": "95527477-73c1-ca16-ea84-c702151111f3",
+					"indexedAsKeyword": false,
+					"system": false,
+					"indexedLanguageId": "en_US",
+					"unique": false,
+					"name": "title",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				},
+				{
+					"indexed": true,
+					"localized": true,
+					"objectFieldSettings": [],
+					"readOnly": "false",
+					"DBType": "String",
+					"label": {
+						"en_US": "Description"
+					},
+					"type": "String",
+					"required": false,
+					"externalReferenceCode": "9d1a2ed7-3721-4c82-f7cf-d9f179c104bf",
+					"indexedAsKeyword": false,
+					"system": false,
+					"indexedLanguageId": "en_US",
+					"unique": false,
+					"name": "description",
+					"state": false,
+					"businessType": "Text",
+					"readOnlyConditionExpression": ""
+				}
+			],
+			"restContextPath": "/o/c/batch2s",
+			"scope": "site",
+			"portlet": true,
+			"modifiable": true,
+			"parameterRequired": false,
+			"enableObjectEntryHistory": false,
+			"titleObjectFieldName": "id",
+			"objectValidationRules": [],
+			"active": true,
+			"defaultLanguageId": "en_US",
+			"enableIndexSearch": true,
+			"label": {
+				"en_US": "Batch 2"
+			},
+			"panelCategoryKey": "site_administration.design",
+			"pluralLabel": {
+				"en_US": "Batch 2"
+			},
+			"objectLayouts": [
+				{
+					"objectLayoutTabs": [
+						{
+							"name": {
+								"en_US": "Batch 2"
+							},
+							"objectLayoutBoxes": [
+								{
+									"objectLayoutRows": [
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "id",
+													"size": 12,
+													"priority": 0
+												}
+											],
+											"priority": 0
+										},
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "title",
+													"size": 12,
+													"priority": 0
+												}
+											],
+											"priority": 0
+										},
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "description",
+													"size": 12,
+													"priority": 0
+												}
+											],
+											"priority": 0
+										}
+									],
+									"collapsable": false,
+									"name": {
+										"en_US": "Batch 2"
+									},
+									"priority": 0,
+									"type": "regular"
+								}
+							],
+							"priority": 0
+						}
+					],
+					"objectDefinitionExternalReferenceCode": "C_BATCH2",
+					"name": {
+						"en_US": "Batch 2 Layout"
+					},
+					"defaultObjectLayout": true
+				}
+			],
+			"system": false,
+			"objectViews": [
+				{
+					"objectDefinitionExternalReferenceCode": "C_BATCH2",
+					"name": {
+						"en_US": "Batch 2 View"
+					},
+					"objectViewFilterColumns": [],
+					"objectViewSortColumns": [],
+					"defaultObjectView": true,
+					"objectViewColumns": [
+						{
+							"objectFieldName": "id",
+							"label": {
+								"en_US": "ID"
+							},
+							"priority": 0
+						},
+						{
+							"objectFieldName": "title",
+							"label": {
+								"en_US": "Title"
+							},
+							"priority": 1
+						},
+						{
+							"objectFieldName": "description",
+							"label": {
+								"en_US": "Description"
+							},
+							"priority": 2
+						}
+					]
+				}
+			],
+			"enableObjectEntryDraft": false,
+			"name": "Batch2",
+			"actions": {
+				"permissions": {},
+				"get": {},
+				"update": {},
+				"delete": {},
+				"exportObjectDefinition": {}
+			}
+		}
+	]
+}

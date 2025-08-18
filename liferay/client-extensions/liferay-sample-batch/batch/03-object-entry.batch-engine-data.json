@@ -1,0 +1,25 @@
+{
+	"configuration": {
+		"className": "com.liferay.object.rest.dto.v1_0.ObjectEntry",
+		"parameters": {
+			"containsHeaders": "true",
+			"createStrategy": "UPSERT",
+			"onErrorFail": "false",
+			"updateStrategy": "UPDATE",
+			"taskItemDelegateName": "C_Test"
+		},
+		"taskItemDelegateName": "C_Test"
+	},
+	"items": [
+		{
+			"title_i18n": {
+				"en_US": "Student"
+			},
+			"studentName": "Nisha",
+			"title": "Student",
+			"studentName_i18n": {
+				"en_US": "Nisha"
+			}
+		}
+	]
+}

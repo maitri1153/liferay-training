@@ -1,0 +1,16 @@
+[
+   {
+      "actions": [
+      ],
+      "name": "Employee",
+      "scope": 3,
+      "type": 2
+   },
+   {
+      "actions": [
+      ],
+      "name": "HR",
+      "scope": 3,
+      "type": 2
+   }
+]

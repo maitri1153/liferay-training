@@ -1,0 +1,6 @@
+{
+   "className": "com.liferay.portal.search.web.internal.search.bar.portlet.SearchBarPortlet",
+   "ddmTemplateKey": "TechnologySearchBar",
+   "name": "Technology SearchBar",
+   "resourceClassName": "com.liferay.portlet.display.template.PortletDisplayTemplate"
+}

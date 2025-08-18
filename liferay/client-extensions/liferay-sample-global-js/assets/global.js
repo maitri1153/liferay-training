@@ -1,0 +1,1 @@
+window.alert("Sample Global JS deployed.");

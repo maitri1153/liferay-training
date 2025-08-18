@@ -1,0 +1,35 @@
+{
+	"label": {
+		"en_US": "Speciality"
+	},
+	"name": "Speciality",
+	"objectFields": [
+		{
+			"DBType": "String",
+			"indexed": false,
+			"indexedAsKeyword": false,
+			"label": {
+				"en_US": "Name"
+			},
+			"name": "name",
+			"required": false
+		},
+		{
+			"DBType": "String",
+			"indexed": false,
+			"indexedAsKeyword": false,
+			"label": {
+				"en_US": "Description"
+			},
+			"name": "description",
+			"required": false
+		}
+	],
+	"pluralLabel": {
+		"en_US": "Specialities"
+	},
+	"scope": "site",
+	"externalReferenceCode":"C_SPECIALITY",
+	"objectFolderExternalReferenceCode":"C_IGNEK",
+	"enableLocalization": true
+}
