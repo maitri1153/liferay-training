@@ -3,7 +3,7 @@
 <% List<EmployeeDetail> employees = (List<EmployeeDetail>) request.getAttribute("employeeList"); %>
 
 <portlet:renderURL var="addEmployeeRenderURL">
-	<portlet:param name="mvcPath" value="/employee.jsp" />
+	<portlet:param name="mvcPath" value="/employee.jsp"/>
 </portlet:renderURL>
 
 <div class="employeeList">
@@ -11,8 +11,7 @@
 	<div class="addEmpDiv pt-2">
 		<p class="float-left employeeText">Employees</p>
 		<c:if test="${isHr}">
-			<a href="<%=addEmployeeRenderURL%>"
-				class="btn btn-default addEmpButton"> ADD NEW EMPLOYEE </a>
+			<a href="<%=addEmployeeRenderURL%>" class="btn-default addEmpButton btn"> ADD NEW EMPLOYEE </a>
 		</c:if>
 	</div>
 
@@ -25,11 +24,9 @@
 		
 		<liferay-ui:search-container-results results="${employeeList}" />
 
-
 		<liferay-ui:search-container-row
 			className="com.employee.service.model.EmployeeDetail"
 			modelVar="employee" keyProperty="employeeId">
-
 
 			<portlet:renderURL var="updateEmployeeRenderURL">
 				<portlet:param name="mvcPath" value="/employee.jsp" />
@@ -70,22 +67,21 @@
 			<div class="icon-container">
 				<c:if test="${isHr}">
 					<!-- Update Button -->
-					<a href="${updateEmployeeRenderURL}" class="btn pl-1 pr-1"> 
+					<a href="${updateEmployeeRenderURL}" class="pl-1 pr-1 btn"> 
 						<i class="bi bi-pencil text-info"></i>
 					</a>
 					<!-- DeleteButton -->
-					<a href="javascript:void(0);" class="btn pl-1 pr-1" data-toggle="modal" data-target="#deleteModal"
-						onclick="deleteFunction('${deleteEmployeeActionURL}')"> 
+					<a href="javascript:void(0);" data-toggle="modal" data-target="#deleteModal"
+						class="pl-1 pr-1 btn" onclick="deleteFunction('${deleteEmployeeActionURL}')"> 
 						<i class="bi bi-trash text-info"></i>
 					</a>
 				</c:if>
 
 				<!-- Download Button -->
-				<a href="<%=downloadURL%>" class="btn pl-1 pr-1"> <i
-					class="bi bi-arrow-down-circle text-info"></i>
+				<a href="<%=downloadURL%>" class="pl-1 pr-1 btn"> 
+					<i class="bi bi-arrow-down-circle text-info"></i>
 				</a>
 			</div>
-
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 
@@ -94,13 +90,12 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
-						<p class="popupText">Are you sure, you want to delete this
-							employee ?</p>
+						<p class="popupText">Are you sure, you want to delete this employee ?</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn noBtn" data-dismiss="modal">NO</button>
-						<button type="button" class="btn yesBtn" id="confirmDeleteBtn"
-							data-dismiss="modal">YES</button>
+						<button type="button" class="btn yesBtn" 
+							id="confirmDeleteBtn" data-dismiss="modal">YES</button>
 					</div>
 				</div>
 			</div>
