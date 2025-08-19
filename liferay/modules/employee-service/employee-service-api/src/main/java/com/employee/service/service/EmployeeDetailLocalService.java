@@ -126,10 +126,7 @@ public interface EmployeeDetailLocalService
 	public int dslQueryCount(DSLQuery dslQuery);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public static DynamicQuery dynamicQuery() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public DynamicQuery dynamicQuery();
 
 	/**
 	 * Performs a dynamic query on the database and returns the matching rows.
