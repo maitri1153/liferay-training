@@ -1,0 +1,13 @@
+liferay-site-initializer:
+    name: Liferay Site Initializer
+    oAuthApplicationHeadlessServer: liferay-site-initializer-oauth-application-headless-server
+    siteExternalReferenceCode: liferaySiteInitializer
+    siteName: Ignek
+    type: siteInitializer
+liferay-site-initializer-oauth-application-headless-server:
+    .serviceAddress: localhost:8080
+    .serviceScheme: http
+    name: Liferay Ignek OAuth Application Headless Server
+    scopes:
+        - Liferay.Headless.Site.everything
+    type: oAuthApplicationHeadlessServer

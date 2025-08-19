@@ -10,7 +10,7 @@
 <%@	page import="com.liferay.portal.kernel.util.ListUtil"%>
 <%@	page import="com.liferay.portal.kernel.service.UserLocalServiceUtil"%>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
-<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
 <liferay-theme:defineObjects />
 <portlet:defineObjects />

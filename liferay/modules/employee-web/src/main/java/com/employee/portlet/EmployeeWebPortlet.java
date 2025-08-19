@@ -12,7 +12,6 @@ import org.osgi.service.component.annotations.Reference;
 import com.employee.constants.EmployeeWebPortletKeys;
 import com.employee.service.model.EmployeeDetail;
 import com.employee.service.service.EmployeeDetailLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -64,12 +63,13 @@ public class EmployeeWebPortlet extends MVCPortlet {
 			Role hrRole = roleLocalService.getRole(companyId, EmployeeWebPortletKeys.HR);
 			boolean isHr = userGroupRoleLocalService.hasUserGroupRole(userId, groupId, hrRole.getRoleId());
 			renderRequest.setAttribute("isHr", isHr);
-			
+			log.info(isHr);
 			SearchContext searchContext = SearchContextFactory.getInstance(PortalUtil.getHttpServletRequest(renderRequest));
 			searchContext.setAttribute("head", true);
 			searchContext.setCompanyId(companyId);
 			
 			Indexer<EmployeeDetail> indexer = IndexerRegistryUtil.getIndexer(EmployeeDetail.class);
+			
 			try {
 				Hits hits = indexer.search(searchContext);		
 				List<EmployeeDetail> employees = new ArrayList<>();
@@ -77,9 +77,9 @@ public class EmployeeWebPortlet extends MVCPortlet {
 				    for (Document doc : hits.getDocs()) {
 				        try {
 				            long employeeId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
-				            EmployeeDetail employee = employeeDetailLocalService.getEmployeeDetail(employeeId);
+				            EmployeeDetail employee = employeeDetailLocalService.fetchEmployeeDetail(employeeId);
 				            employees.add(employee);
-				        } catch (PortalException | SystemException e) {
+				        } catch (SystemException e) {
 				            log.info("Error while converting to employeeList from hits");
 				        }
 				    }

@@ -1,0 +1,22 @@
+{
+	"pageElement": {
+		"pageElements": [
+			{
+				"definition": {
+					"fragment": {
+						"key": "banner-fragment-entry"
+					},
+					"fragmentConfig": {},
+					"fragmentFields": [],
+					"fragmentStyle": {
+						"backgroundFragmentImage": {}
+					}
+				},
+				"type": "Fragment"
+			}
+		],
+		"type": "Root"
+	},
+	"settings": {
+	}
+}

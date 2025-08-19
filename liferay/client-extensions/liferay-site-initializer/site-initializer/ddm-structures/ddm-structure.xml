@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+
+<root>
+	<structure>
+		<name>Template Structure</name>
+		<description></description>
+		<definition>
+           <![CDATA[
+              {
+                "availableLanguageIds": [
+                    "en_US"
+                ],
+
+                   "defaultLanguageId": "en_US",
+                   "fields": [
+                      {
+                      		"autocomplete": false,
+                      		"confirmationErrorMessage": { "en_US": ""},
+                      		"confirmationLabel": {"en_US": ""},
+                      		"dataSourceType": "",
+                      		"dataType": "string",
+                      		"ddmDataProviderInstanceId": [],
+                      		"ddmDataProviderInstanceOutput": [],
+                      		"direction": ["vertical"],
+                      		"displayStyle": "singleline",
+                      		"fieldNamespace": "",
+                      		"fieldReference": "TechnologyTitle",
+                      		"hideField": false,
+                      		"indexType": "keyword",
+                          	"label": {
+        						"en_US": "Technology Title"
+      						},
+							"labelAtStructureLevel": true,	
+							"localizable": true,
+							"name": "Text99674002",
+							"nativeField": false,
+	     					"objectFieldName": "",
+                          	"placeholder": {"en_US": ""},
+			  				"predefinedValue": {"en_US": ""},
+			  				"readOnly": false,
+			  				"repeatable": false,
+                          	"requireConfirmation": false,
+                          	"required": false,
+                          	"requiredErrorMessage": {
+                              	"en_US": ""
+                          	},
+                          	"showLabel": true,
+                          	"tip": {
+                              	"en_US": ""
+                          	},
+                          	"tooltip": {
+                              	"en_US": ""
+                          	},
+                          	"type": "text",
+                          	"visibilityExpression": ""
+               		  },
+               		  {
+               		  	"autocomplete": false,
+              		  	"confirmationErrorMessage": { "en_US": ""},
+             		  	"confirmationLabel": {"en_US": ""},
+						"dataSourceType": "",
+						"dataType": "image",
+						"ddmDataProviderInstanceId": [],
+                    	"ddmDataProviderInstanceOutput": [],
+                    	"direction": ["vertical"],
+             		  	"fieldNamespace": "",
+						"fieldReference": "TechnologyIcon",
+						"hideField": false,
+						"indexType": "keyword",
+						"label": {
+      						"en_US": "Technology Icon"
+    					},
+						"labelAtStructureLevel": false,
+						"name": "Image76582446",
+						"nativeField": false,
+						"objectFieldName": "",
+      					"readOnly": false,
+    					"repeatable": false,
+						"requireConfirmation": false,
+						"required": false,
+						"requiredErrorMessage": {
+                            		"en_US": ""
+                        },
+						"showLabel": true,
+						"tip": {
+      						"en_US": ""
+    					},
+						"tooltip": {
+    		                "en_US": ""
+                        },
+      					"type": "image",
+						"visibilityExpression": "" 	
+               		  },
+               		  {
+                     		"autocomplete": false,
+                     		"confirmationErrorMessage": { "en_US": ""},
+                     		"confirmationLabel": {"en_US": ""},
+                     		"dataSourceType": "",
+                     		"dataType": "string",
+                     		"ddmDataProviderInstanceId": [],
+                     		"ddmDataProviderInstanceOutput": [],
+                     		"direction": ["vertical"],
+                       		"fieldNamespace": "",
+                     		"fieldReference": "TechnologyDescription",
+                     		"hideField": false,
+                     		"indexType": "keyword",
+                         	"label": {
+       						"en_US": "Technology Description"
+     						},
+							"labelAtStructureLevel": true,	
+							"localizable": true,
+							"name": "RichText68976244",
+							"nativeField": false,
+	     					"objectFieldName": "",
+                         	"placeholder": {"en_US": ""},
+			  				"predefinedValue": {"en_US": ""},
+			  				"readOnly": false,
+			  				"repeatable": false,
+                         	"requireConfirmation": false,
+                         	"required": false,
+                         	"requiredErrorMessage": {
+                             	"en_US": ""
+                         	},
+                         	"showLabel": true,
+                         	"tip": {
+                             	"en_US": ""
+                         	},
+                         	"tooltip": {
+                             	"en_US": ""
+                         	},
+                         	"type": "rich_text",
+                         	"visibilityExpression": ""
+              		  },
+               		],
+               		"successPage": {
+                       "body": {},
+                       "enabled": false,
+                       "title": {}
+               		}
+              }
+           ]]>
+		</definition>
+	</structure>
+</root>

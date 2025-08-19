@@ -1,0 +1,74 @@
+{
+	"label": {
+		"en_US": "Activity"
+	},
+	"name": "Activity",
+	"objectFields": [
+		{
+			"indexed": true,
+			"localized": false,
+			"objectFieldSettings": [],
+			"readOnly": "false",
+			"DBType": "String",
+			"label": {
+				"en_US": "Activity Type"
+			},
+			"type": "String",
+			"required": false,
+			"indexedAsKeyword": false,
+			"system": false,
+			"indexedLanguageId": "en_US",
+			"unique": false,
+			"name": "activityType",
+			"state": false,
+			"businessType": "Text",
+			"readOnlyConditionExpression": ""
+		},
+		{
+			"indexed": true,
+			"localized": false,
+			"objectFieldSettings": [],
+			"readOnly": "false",
+			"DBType": "String",
+			"label": {
+				"en_US": "Details"
+			},
+			"type": "String",
+			"required": false,
+			"indexedAsKeyword": false,
+			"system": false,
+			"indexedLanguageId": "en_US",
+			"unique": false,
+			"name": "details",
+			"state": false,
+			"businessType": "Text",
+			"readOnlyConditionExpression": ""
+		},
+		{
+			"indexed": true,
+			"localized": false,
+			"objectFieldSettings": [],
+			"readOnly": "false",
+			"DBType": "String",
+			"label": {
+				"en_US": "IP Address"
+			},
+			"type": "String",
+			"required": false,
+			"indexedAsKeyword": false,
+			"system": false,
+			"indexedLanguageId": "en_US",
+			"unique": false,
+			"name": "iPAddress",
+			"state": false,
+			"businessType": "Text",
+			"readOnlyConditionExpression": ""
+		}
+	],
+	"pluralLabel": {
+		"en_US": "Activities"
+	},
+	"externalReferenceCode": "C_Activity",
+	"objectFolderExternalReferenceCode": "C_IGNEK",
+	"scope": "site"
+}
